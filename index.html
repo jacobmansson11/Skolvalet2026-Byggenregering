@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+
     :root {
       --bg-main: #f8fafc;
       --bg-card: #ffffff;
@@ -330,6 +331,58 @@
       border-color: #fde68a;
     }
 
+    /* ==========================================================
+       POPUP FÖR ANALYS AV REGERINGSVAL
+       ========================================================== */
+
+    .analysisModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+
+    .analysisModal.hidden {
+      display: none !important;
+    }
+
+    .analysisModalContent {
+      width: min(680px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    .analysisModalClose {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: #0f172a;
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .analysisModalClose:hover {
+      background: #e2e8f0;
+    }
+
+    .analysisModalContent .analysisBox {
+      margin-top: 0;
+    }
+
     hr {
       border: 0;
       border-top: 1px solid var(--border-color);
@@ -634,23 +687,28 @@
         grid-template-columns: 1fr;
       }
     }
+
   </style>
 </head>
 
 <body>
 
 <header>
+
   <div>
     <h1>🏛️ Bygg en regering</h1>
     <p>Utgå från ert skolval och försök få ihop en regering som kan få stöd i riksdagen.</p>
   </div>
 
-  <button class="light" onclick="resetAll()">Återställ elevuppdrag</button>
+  <button class="light" onclick="resetAll()">
+    Återställ elevuppdrag
+  </button>
+
 </header>
 
 <div class="wrap">
 
-  <!-- FLikar -->
+  <!-- FLIKAR -->
 
   <div class="tabs">
 
@@ -1061,6 +1119,32 @@
 </div>
 
 
+<!-- =====================================================
+     POPUP FÖR REGERINGSANALYS
+     ===================================================== -->
+
+<div id="analysisModal"
+     class="analysisModal hidden"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="analysisModalTitle"
+     onclick="if(event.target === this) closeAnalysisModal()">
+
+  <div class="analysisModalContent">
+
+    <button class="analysisModalClose"
+            aria-label="Stäng analys"
+            onclick="closeAnalysisModal()">
+      ×
+    </button>
+
+    <div id="analysisModalBody"></div>
+
+  </div>
+
+</div>
+
+
 <script>
 
 /* ==========================================================
@@ -1386,12 +1470,6 @@ function selectedPartyNames() {
    ANALYS AV REGERING
    ========================================================== */
 
-/*
-  Detta är medvetet en pedagogisk förenkling.
-  Eleverna får se exempel på områden där partier kan
-  ha lättare respektive svårare att samarbeta.
-*/
-
 const cooperation = {
 
   S: {
@@ -1399,26 +1477,32 @@ const cooperation = {
       good: ['försvar', 'lag och ordning'],
       hard: ['skatter', 'välfärd', 'privatisering']
     },
+
     SD: {
       good: ['lag och ordning'],
       hard: ['migration', 'värderingsfrågor']
     },
+
     V: {
       good: ['välfärd', 'arbetsmarknad'],
       hard: ['vinster i välfärden', 'ekonomisk politik']
     },
+
     C: {
       good: ['landsbygd', 'företagande'],
       hard: ['skatter', 'välfärd', 'arbetsrätt']
     },
+
     KD: {
       good: ['välfärd', 'äldreomsorg'],
       hard: ['skatter', 'ekonomi']
     },
+
     MP: {
       good: ['klimat', 'välfärd'],
       hard: ['energi', 'migration']
     },
+
     L: {
       good: ['skola', 'EU'],
       hard: ['skatter', 'välfärd']
@@ -1430,22 +1514,27 @@ const cooperation = {
       good: ['lag och ordning', 'migration'],
       hard: ['klimatpolitik', 'EU-frågor']
     },
+
     V: {
       good: ['vissa välfärdsfrågor'],
       hard: ['skatter', 'ekonomi', 'privatisering']
     },
+
     C: {
       good: ['företagande', 'landsbygd'],
       hard: ['migration', 'skatter']
     },
+
     KD: {
       good: ['familj', 'lag och ordning', 'ekonomi'],
       hard: ['vissa välfärdsfrågor']
     },
+
     MP: {
       good: ['vissa miljöfrågor'],
       hard: ['energi', 'ekonomi']
     },
+
     L: {
       good: ['skola', 'EU', 'ekonomi'],
       hard: ['vissa sociala frågor']
@@ -1457,18 +1546,22 @@ const cooperation = {
       good: ['vissa välfärdsfrågor'],
       hard: ['migration', 'ekonomi', 'värderingsfrågor']
     },
+
     C: {
       good: [],
       hard: ['migration', 'landsbygdspolitik', 'värderingsfrågor']
     },
+
     KD: {
       good: ['lag och ordning', 'familj'],
       hard: ['migration', 'vissa värderingsfrågor']
     },
+
     MP: {
       good: [],
       hard: ['migration', 'klimat', 'energi']
     },
+
     L: {
       good: ['lag och ordning'],
       hard: ['migration', 'värderingsfrågor']
@@ -1480,14 +1573,17 @@ const cooperation = {
       good: ['klimat', 'landsbygd'],
       hard: ['ekonomi', 'välfärdens organisering']
     },
+
     KD: {
       good: ['vård', 'äldreomsorg'],
       hard: ['ekonomi', 'värderingsfrågor']
     },
+
     MP: {
       good: ['klimat', 'miljö', 'välfärd'],
       hard: ['ekonomi']
     },
+
     L: {
       good: ['skola', 'vissa liberala rättigheter'],
       hard: ['ekonomi', 'skatter']
@@ -1499,10 +1595,12 @@ const cooperation = {
       good: ['landsbygd', 'företagande'],
       hard: ['migration', 'ekonomi']
     },
+
     MP: {
       good: ['klimat', 'landsbygd'],
       hard: ['ekonomi']
     },
+
     L: {
       good: ['företagande', 'skola', 'EU'],
       hard: ['migration', 'ekonomi']
@@ -1514,6 +1612,7 @@ const cooperation = {
       good: ['vård', 'äldre'],
       hard: ['energi', 'klimat']
     },
+
     L: {
       good: ['skola', 'vård'],
       hard: ['ekonomi']
@@ -1548,20 +1647,25 @@ function getCooperation(a, b) {
 }
 
 
+/* ==========================================================
+   RENDERA REGERINGSANALYS
+   ========================================================== */
+
 function renderGovernmentAnalysis(c) {
 
   const box =
     document.getElementById('discussionBox');
 
+  const modalBody =
+    document.getElementById('analysisModalBody');
+
   if (!gov.size) {
 
-    box.innerHTML = `
-      <div class="analysisBox">
-        <b>💬 Analys:</b>
-        Välj minst två partier för att börja analysera
-        hur en regering skulle kunna samarbeta.
-      </div>
-    `;
+    box.innerHTML = '';
+
+    if (modalBody) {
+      modalBody.innerHTML = '';
+    }
 
     return;
 
@@ -1569,14 +1673,41 @@ function renderGovernmentAnalysis(c) {
 
   const names = selectedPartyNames();
 
+  /*
+    Med bara ett parti finns det ännu ingen riktig
+    regeringskoalition att analysera.
+  */
+
+  if (gov.size < 2) {
+
+    box.innerHTML = `
+      <div class="analysisBox">
+        <b>💬 Analys:</b>
+        Lägg till minst ett parti till för att analysera
+        hur regeringen skulle kunna samarbeta.
+      </div>
+    `;
+
+    return;
+
+  }
+
   let good = [];
   let hard = [];
 
   const selected = [...gov];
 
-  for (let i = 0; i < selected.length; i++) {
+  for (
+    let i = 0;
+    i < selected.length;
+    i++
+  ) {
 
-    for (let j = i + 1; j < selected.length; j++) {
+    for (
+      let j = i + 1;
+      j < selected.length;
+      j++
+    ) {
 
       const result =
         getCooperation(
@@ -1596,23 +1727,39 @@ function renderGovernmentAnalysis(c) {
 
   }
 
-  good = [...new Set(good)].filter(Boolean);
-  hard = [...new Set(hard)].filter(Boolean);
+  good =
+    [...new Set(good)]
+      .filter(Boolean);
 
-  let difficulty = 'lättare';
+  hard =
+    [...new Set(hard)]
+      .filter(Boolean);
+
+  let difficulty =
+    'lättare';
 
   if (hard.length >= 5) {
-    difficulty = 'ganska svårt';
+
+    difficulty =
+      'ganska svårt';
+
   } else if (hard.length >= 3) {
-    difficulty = 'utmanande';
+
+    difficulty =
+      'utmanande';
+
   }
 
-  box.innerHTML = `
+  const analysisHTML = `
 
     <div class="analysisBox
-      ${hard.length >= 5 ? 'analysisWarn' : 'analysisGood'}">
+      ${hard.length >= 5
+        ? 'analysisWarn'
+        : 'analysisGood'}">
 
-      <h3>🔎 Analys av ert regeringsval</h3>
+      <h3 id="analysisModalTitle">
+        🔎 Analys av ert regeringsval
+      </h3>
 
       <p>
         <b>Er regering:</b>
@@ -1623,13 +1770,21 @@ function renderGovernmentAnalysis(c) {
         <b>Hur kan samarbetet fungera?</b>
         Den här regeringen skulle sannolikt kunna hitta
         gemensamma lösningar inom:
-        <b>${good.length ? good.join(', ') : 'vissa gemensamma frågor'}</b>.
+        <b>
+          ${good.length
+            ? good.join(', ')
+            : 'vissa gemensamma frågor'}
+        </b>.
       </p>
 
       <p>
         <b>Var kan det bli konflikter?</b>
         Partierna kan behöva kompromissa särskilt om:
-        <b>${hard.length ? hard.join(', ') : 'ekonomi och prioriteringar'}</b>.
+        <b>
+          ${hard.length
+            ? hard.join(', ')
+            : 'ekonomi och prioriteringar'}
+        </b>.
       </p>
 
       <p>
@@ -1648,7 +1803,43 @@ function renderGovernmentAnalysis(c) {
       </p>
 
     </div>
+
   `;
+
+  /*
+    Analysen visas som popup i stället för i högerspalten.
+  */
+
+  box.innerHTML = '';
+
+  if (modalBody) {
+
+    modalBody.innerHTML = analysisHTML;
+
+    const modal =
+      document.getElementById('analysisModal');
+
+    if (modal) {
+      modal.classList.remove('hidden');
+    }
+
+  }
+
+}
+
+
+/* ==========================================================
+   STÄNG ANALYSPopup
+   ========================================================== */
+
+function closeAnalysisModal() {
+
+  const modal =
+    document.getElementById('analysisModal');
+
+  if (modal) {
+    modal.classList.add('hidden');
+  }
 
 }
 
@@ -1730,6 +1921,7 @@ function render() {
         onclick="toggle('${p.name}')">
 
         <span>
+
           <i
             class="dot"
             style="background:${p.color}">
@@ -1737,6 +1929,7 @@ function render() {
 
           <b>${p.name}</b>
           ${p.full}
+
         </span>
 
         <b>${c[p.name]}</b>
@@ -1910,9 +2103,13 @@ function renderTeacher(c) {
 function toggle(n) {
 
   if (gov.has(n)) {
+
     gov.delete(n);
+
   } else {
+
     gov.add(n);
+
   }
 
   render();
@@ -1923,6 +2120,8 @@ function toggle(n) {
 function clearGov() {
 
   gov.clear();
+
+  closeAnalysisModal();
 
   render();
 
@@ -1979,6 +2178,8 @@ function save() {
 function resetAll() {
 
   gov.clear();
+
+  closeAnalysisModal();
 
   missionIndex = 0;
 
@@ -2210,6 +2411,15 @@ let missionIndex = 0;
 
 function missionOK(c) {
 
+  if (
+    missionIndex < 0 ||
+    missionIndex >= missions.length
+  ) {
+
+    return false;
+
+  }
+
   let g =
     governmentSeats(c);
 
@@ -2226,21 +2436,43 @@ function missionOK(c) {
 
 function nextMission() {
 
-  let c = counts();
+  const c = counts();
 
-  if (
-    missionOK(c) &&
-    missionIndex <
-      missions.length - 1
-  ) {
+  /*
+    Kontrollera alltid uppdraget precis innan vi går vidare.
+    Detta gör knappen stabil även efter att regeringen har
+    ändrats eller när mandatfördelningen har räknats om.
+  */
 
-    missionIndex++;
-
-    gov.clear();
+  if (!missionOK(c)) {
 
     render();
 
+    return;
+
   }
+
+  if (
+    missionIndex >=
+    missions.length - 1
+  ) {
+
+    return;
+
+  }
+
+  missionIndex++;
+
+  localStorage.setItem(
+    'schoolGovMission',
+    missionIndex
+  );
+
+  gov.clear();
+
+  closeAnalysisModal();
+
+  render();
 
 }
 
@@ -2290,6 +2522,7 @@ function renderMissions(c) {
        style="margin:0 0 10px;">
 
       Vald regering:
+
       ${
         gov.size
           ? [...gov].join(' + ')
@@ -2472,489 +2705,67 @@ function lockTeacher() {
 
 
 /* ==========================================================
-   BYTA FLIK
+   SIDOR
    ========================================================== */
 
-function showPage(p) {
+function showPage(page) {
 
   [
     'student',
-    'teacher',
     'facts',
     'issues',
-    'games'
+    'games',
+    'teacher'
   ].forEach(
-    x =>
+    id =>
       document
-        .getElementById(x)
-        .classList.add('hidden')
+        .getElementById(id)
+        .classList.toggle(
+          'hidden',
+          id !== page
+        )
   );
-
 
   document
-    .getElementById(p)
-    .classList.remove('hidden');
-
-
-  document.getElementById('sTab')
+    .getElementById('sTab')
     .className =
-    p === 'student'
-      ? 'dark'
-      : 'light';
+      page === 'student'
+        ? 'dark'
+        : 'light';
 
-  document.getElementById('tTab')
+  document
+    .getElementById('fTab')
     .className =
-    p === 'teacher'
-      ? 'dark'
-      : 'light';
+      page === 'facts'
+        ? 'dark'
+        : 'light';
 
-  document.getElementById('fTab')
+  document
+    .getElementById('iTab')
     .className =
-    p === 'facts'
-      ? 'dark'
-      : 'light';
+      page === 'issues'
+        ? 'dark'
+        : 'light';
 
-  document.getElementById('iTab')
+  document
+    .getElementById('gTab')
     .className =
-    p === 'issues'
-      ? 'dark'
-      : 'light';
+      page === 'games'
+        ? 'dark'
+        : 'light';
 
-  document.getElementById('gTab')
+  document
+    .getElementById('tTab')
     .className =
-    p === 'games'
-      ? 'dark'
-      : 'light';
+      page === 'teacher'
+        ? 'dark'
+        : 'light';
 
 }
 
 
 /* ==========================================================
-   SAKFRÅGOR
-   ========================================================== */
-
-const issueData = [
-
-  {
-    id: 'health',
-    title: '🏥 Sjukvård & Omsorg',
-
-    positions: {
-
-      'S':
-        'Vill att staten tar större ansvar för sjukvården och stoppar privata vinster.',
-
-      'M':
-        'Vill ha valfrihet med privata aktörer och korta vårdköerna genom effektivisering.',
-
-      'SD':
-        'Vill ha statligt huvudmannaskap för sjukvården och satsa på äldreomsorg.',
-
-      'V':
-        'Vill förbjuda vinstuttag i vården och satsa stora resurser på personalens villkor.',
-
-      'C':
-        'Försvarar valfriheten och vill stärka nära vård och primärvård på landsbygden.',
-
-      'KD':
-        'Vill skrota regionerna och låta staten ta över hela ansvaret för sjukvården.',
-
-      'MP':
-        'Vill ha mer resurser till förebyggande hälsovård och bättre arbetsmiljö.',
-
-      'L':
-        'Vill ge staten ansvar för sjukhusvården och införa en nationell kökortningsgaranti.'
-    }
-  },
-
-  {
-    id: 'school',
-    title: '🏫 Skola & Utbildning',
-
-    positions: {
-
-      'S':
-        'Vill stoppa vinstjakten i friskolor och reglera skolvalet för ökad jämlikhet.',
-
-      'M':
-        'Vill behålla friskolesystemet men skärpa kraven på kvalitet och ordning i klassrummen.',
-
-      'SD':
-        'Vill ha mer ordning, fokus på svensk kultur/historia och stopp för religiösa friskolor.',
-
-      'V':
-        'Vill stoppa alla vinster i skolan och att kommunala skolor ska prioriteras.',
-
-      'C':
-        'Värnar friskolesystemet och valfriheten, men vill ställa högre kvalitetskrav.',
-
-      'KD':
-        'Vill stärka lärarnas auktoritet, minska skärmtid och införa mer katederundervisning.',
-
-      'MP':
-        'Vill avskaffa vinstdrivande friskolor och satsa på elevhälsa samt mindre klasser.',
-
-      'L':
-        'Vill förstatliga skolan, införa mer betyg/kunskapskrav och stärka lärarnas roll.'
-    }
-  },
-
-  {
-    id: 'migration',
-    title: '🌐 Migration & Integration',
-
-    positions: {
-
-      'S':
-        'Stram och reglerad invandring kombinerat med hårdare krav på integration och språk.',
-
-      'M':
-        'Stram invandringspolitik, skärpta krav för medborgarskap och självförsörjning.',
-
-      'SD':
-        'Mycket stram invandring, återvandring samt hårdare krav på assimilering.',
-
-      'V':
-        'Human flyktingpolitik, värna rätten till asyl och underlätta familjeåterförening.',
-
-      'C':
-        'Human flyktingpolitik kombinerat med att snabbt få nyanlända i arbete.',
-
-      'KD':
-        'Stram och långsiktigt hållbar migration med fokus på kvotflyktingar.',
-
-      'MP':
-        'Öppnare flyktingpolitik, värna asylrätten och underlätta för papperslösa/unga.',
-
-      'L':
-        'Kombinera reglerad invandring med strama krav på språkkunskaper och jobb.'
-    }
-  },
-
-  {
-    id: 'economy',
-    title: '💰 Ekonomi & Skatter',
-
-    positions: {
-
-      'S':
-        'Högre skatt på stora förmögenheter för att finansiera välfärd och trygghet.',
-
-      'M':
-        'Sänkta skatter på arbete och företagande för att stärka tillväxten.',
-
-      'SD':
-        'Sänkta skatter på drivmedel och arbete, samt skydda svensk industri.',
-
-      'V':
-        'Omfördela resurser genom höjda skatter för rika och storföretag.',
-
-      'C':
-        'Sänkta skatter för småföretagare och på arbete, särskilt på landsbygden.',
-
-      'KD':
-        'Sänk skatten på arbete och pension, underlätta för familjers ekonomi.',
-
-      'MP':
-        'Grön skatteväxling: högre skatt på miljöförstöring, lägre på arbete.',
-
-      'L':
-        'Sänkta marginalskatter för att det ska löna sig att utbilda sig och arbeta.'
-    }
-  },
-
-  {
-    id: 'crime',
-    title: '⚖️ Lag & Ordning',
-
-    positions: {
-
-      'S':
-        'Skärpta straff för gängkriminalitet i kombination med förebyggande insatser.',
-
-      'M':
-        'Hårdare straff, fler poliser, visitationszoner och utökad kameraövervakning.',
-
-      'SD':
-        'Kraftigt skärpta straff, utvisning av utländska brottslingar och fler fängelseplatser.',
-
-      'V':
-        'Fokus på förebyggande socioekonomiska insatser och socialtjänst framför hårdare straff.',
-
-      'C':
-        'Fler poliser i hela landet och tidiga insatser mot unga som dras till gäng.',
-
-      'KD':
-        'Slopa straffrabatter, bygga fler fängelser och ge polisen mer verktyg.',
-
-      'MP':
-        'Satsa på förebyggande arbete, skola och avhopparverksamhet framför enbart straff.',
-
-      'L':
-        'Fler poliser, skärpta straff för gängkriminella och ordning i skolan som förebyggande.'
-    }
-  },
-
-  {
-    id: 'climate',
-    title: '🌱 Klimat & Miljö',
-
-    positions: {
-
-      'S':
-        'Grön nyindustrialisering och snabb utbyggnad av fossilfri el.',
-
-      'M':
-        'Satsa på kärnkraft och tekniska lösningar för att nå klimatmålen.',
-
-      'SD':
-        'Prioritera billig energi och drivmedel framför höga svenska klimatmål.',
-
-      'V':
-        'Stora statliga investeringar i tågtrafik, förnybar energi och grön omställning.',
-
-      'C':
-        'Marknadsdriven grön omställning, satsa på förnybar energi och biobränsle.',
-
-      'KD':
-        'Satsa på kärnkraft och effektiv miljöteknik utan att belasta hushållen för hårt.',
-
-      'MP':
-        'Skärpta klimatmål, stoppa fossila subventioner och satsa på förnybart.',
-
-      'L':
-        'Satsa på kärnkraft, forskning och EU-gemensamma regler för utsläpp.'
-    }
-  }
-
-];
-
-
-/* ==========================================================
-   RENDERA SAKFRÅGOR
-   ========================================================== */
-
-function renderIssues() {
-
-  const container =
-    document.getElementById(
-      'issueGrid'
-    );
-
-  container.innerHTML =
-    issueData.map(
-      issue => `
-
-        <div class="issueCard">
-
-          <h3>
-            ${issue.title}
-          </h3>
-
-          ${
-            parties.map(
-              p => `
-
-                <div class="partyPosition">
-
-                  <span
-                    class="partyTag"
-                    style="
-                      background:${p.color};
-                      color:${['KD','M','L']
-                        .includes(p.name)
-                        ? 'white'
-                        : 'black'
-                      }">
-
-                    ${p.name}
-
-                  </span>
-
-                  <span class="small">
-
-                    ${issue.positions[p.name]}
-
-                  </span>
-
-                </div>
-
-              `
-            ).join('')
-          }
-
-        </div>
-
-      `
-    ).join('');
-
-
-  const p1 =
-    document.getElementById(
-      'p1Select'
-    );
-
-  const p2 =
-    document.getElementById(
-      'p2Select'
-    );
-
-
-  const options =
-    parties
-      .map(
-        p =>
-          `<option value="${p.name}">
-            ${p.full} (${p.name})
-          </option>`
-      )
-      .join('');
-
-
-  p1.innerHTML = options;
-
-  p2.innerHTML = options;
-
-  p1.value = 'S';
-
-  p2.value = 'M';
-
-  updateComparison();
-
-}
-
-
-/* ==========================================================
-   JÄMFÖRELSE
-   ========================================================== */
-
-function updateComparison() {
-
-  const code1 =
-    document.getElementById(
-      'p1Select'
-    ).value;
-
-  const code2 =
-    document.getElementById(
-      'p2Select'
-    ).value;
-
-  const res =
-    document.getElementById(
-      'compareResult'
-    );
-
-
-  if (code1 === code2) {
-
-    res.innerHTML =
-      '<p><b>Välj två olika partier för att jämföra deras politik!</b></p>';
-
-    return;
-
-  }
-
-
-  const p1 =
-    parties.find(
-      p => p.name === code1
-    );
-
-  const p2 =
-    parties.find(
-      p => p.name === code2
-    );
-
-
-  let html = `
-
-    <h3 style="margin-top:0;">
-      Jämförelse:
-      ${p1.full}
-      vs
-      ${p2.full}
-    </h3>
-
-  `;
-
-
-  issueData.forEach(
-    issue => {
-
-      html += `
-
-        <div
-          style="
-            margin-bottom:12px;
-            padding:8px;
-            background:#fff;
-            border-radius:6px;">
-
-          <b>
-            ${issue.title}
-          </b>
-
-          <p
-            style="margin:4px 0;"
-            class="small">
-
-            <span
-              class="partyTag"
-              style="
-                background:${p1.color};
-                color:${['KD','M','L']
-                  .includes(p1.name)
-                  ? 'white'
-                  : 'black'
-                }">
-
-              ${p1.name}
-
-            </span>
-
-            ${issue.positions[p1.name]}
-
-          </p>
-
-
-          <p
-            style="margin:4px 0;"
-            class="small">
-
-            <span
-              class="partyTag"
-              style="
-                background:${p2.color};
-                color:${['KD','M','L']
-                  .includes(p2.name)
-                  ? 'white'
-                  : 'black'
-                }">
-
-              ${p2.name}
-
-            </span>
-
-            ${issue.positions[p2.name]}
-
-          </p>
-
-        </div>
-
-      `;
-
-    }
-  );
-
-
-  res.innerHTML = html;
-
-}
-
-
-/* ==========================================================
-   PARTIKORT
+   FAKTAKORT
    ========================================================== */
 
 function renderFacts() {
@@ -2963,239 +2774,326 @@ function renderFacts() {
     'factgrid'
   ).innerHTML =
 
-    factData.map(
-      p => `
+    parties.map(p => `
 
-        <article class="factCard">
+      <div class="factCard">
 
-          <div class="factHeader">
+        <div class="factHeader">
 
-            <img
-              src="${p.logo}"
-              alt="${p.name} logotyp"
-              class="factLogoImg"
-              onerror="
-                this.style.display='none'
-              ">
+          <img
+            src="${p.logo}"
+            alt="${p.full}"
+            class="factLogoImg"
+            referrerpolicy="no-referrer"
+            loading="eager">
 
-            <div>
+          <h3 class="factTitle">
+            ${p.full}
+          </h3>
 
-              <h3 class="factTitle">
+        </div>
 
-                ${p.name}
-                (${p.code})
+        <div class="factBody">
 
-              </h3>
+          <img
+            src="${p.photo}"
+            alt="${p.leader}"
+            class="leaderImg"
+            referrerpolicy="no-referrer"
+            loading="eager">
 
-              <span class="small">
-                Grundat ${p.founded}
-              </span>
+          <div class="factText">
 
-            </div>
+            <p>
+              <b>Partiledare:</b>
+              ${p.leader}
+            </p>
 
-          </div>
+            <p>
+              <b>Skolval:</b>
+              ${p.pct} %
+            </p>
 
+            <div class="linkRow">
 
-          <div class="factBody">
+              <a
+                class="linkButton"
+                href="${p.site}"
+                target="_blank">
+                Partiets hemsida
+              </a>
 
-            <img
-              src="${p.photo}"
-              alt="${p.leader}"
-              class="leaderImg"
-              onerror="
-                this.src='https://via.placeholder.com/90x110?text=Foto'
-              ">
-
-            <div class="factText">
-
-              <p>
-                <b>Partiledare:</b>
-                ${p.leader}
-              </p>
-
-              <p>
-                <b>Ideologi:</b>
-                ${p.ideology}
-              </p>
-
-              <p
-                style="
-                  margin-top:6px;
-                  color:var(--text-muted);">
-
-                ${p.desc}
-
-              </p>
-
-              <div class="linkRow">
-
-                <a
-                  class="linkButton"
-                  href="${p.site}"
-                  target="_blank"
-                  rel="noopener noreferrer">
-
-                  🌐 Partiets hemsida
-
-                </a>
-
-                <a
-                  class="linkButton"
-                  href="${p.ne}"
-                  target="_blank"
-                  rel="noopener noreferrer">
-
-                  📖 Läs på NE
-
-                </a>
-
-              </div>
+              <a
+                class="linkButton"
+                href="${p.ne}"
+                target="_blank">
+                NE
+              </a>
 
             </div>
 
           </div>
 
-        </article>
+        </div>
 
-      `
-    ).join('');
+      </div>
+
+    `).join('');
 
 }
 
 
 /* ==========================================================
-   FAKTA
+   SAKFRÅGOR
    ========================================================== */
 
-const factData = [
+const issues = [
 
   {
-    code: 'S',
-    name: 'Socialdemokraterna',
-    leader: 'Magdalena Andersson',
-    founded: '1889',
-    ideology: 'Socialdemokrati',
-    desc:
-      'Fokuserar på välfärd, arbete, jämlikhet och en stark offentlig sektor.',
-    logo: parties[0].logo,
-    photo: parties[0].photo,
-    site: parties[0].site,
-    ne: parties[0].ne
+    title: 'Ekonomi & skatter',
+
+    positions: {
+      S: 'Vill generellt ha högre skatter för höginkomsttagare och prioritera välfärd.',
+      M: 'Vill generellt ha lägre skatter och större fokus på arbete och företagande.',
+      SD: 'Vill sänka vissa skatter och prioritera välfärd, pensionärer och trygghet.',
+      V: 'Vill höja skatter för höginkomsttagare och stora företag för att finansiera välfärd.',
+      C: 'Vill sänka skatter på arbete och företagande.',
+      KD: 'Vill sänka vissa skatter och prioritera familjer, vård och äldre.',
+      MP: 'Vill använda skatter för att styra mot klimatmål och minska utsläpp.',
+      L: 'Vill sänka skatten på arbete och utbildning men finansiera välfärden.'
+    }
   },
 
   {
-    code: 'M',
-    name: 'Moderaterna',
-    leader: 'Ulf Kristersson',
-    founded: '1904',
-    ideology: 'Liberal konservatism',
-    desc:
-      'Betonar marknadsekonomi, sänkta skatter, lag och ordning samt personlig frihet.',
-    logo: parties[1].logo,
-    photo: parties[1].photo,
-    site: parties[1].site,
-    ne: parties[1].ne
+    title: 'Skola',
+
+    positions: {
+      S: 'Vill stärka den offentliga skolan och öka resurserna.',
+      M: 'Vill ha tydliga kunskapskrav och möjlighet till olika skolalternativ.',
+      SD: 'Vill stärka kunskapsresultaten och minska skillnader mellan skolor.',
+      V: 'Vill stärka den kommunala skolan och minska marknadens roll.',
+      C: 'Vill ge skolor större frihet och stärka landsbygdens skolor.',
+      KD: 'Vill prioritera kunskap, trygghet och ordning i skolan.',
+      MP: 'Vill stärka elevhälsa och arbeta med hållbar utveckling.',
+      L: 'Vill prioritera kunskap, lärarnas status och tydliga kunskapskrav.'
+    }
   },
 
   {
-    code: 'SD',
-    name: 'Sverigedemokraterna',
-    leader: 'Jimmie Åkesson',
-    founded: '1988',
-    ideology: 'Socialkonservatism',
-    desc:
-      'Fokuserar på stram invandringspolitik, skärpta straff och bevarande av svensk kultur.',
-    logo: parties[2].logo,
-    photo: parties[2].photo,
-    site: parties[2].site,
-    ne: parties[2].ne
+    title: 'Migration',
+
+    positions: {
+      S: 'Vill ha en reglerad migration och betonar integration.',
+      M: 'Vill ha en betydligt stramare migrationspolitik.',
+      SD: 'Vill ha mycket kraftigt minskad migration.',
+      V: 'Vill ha en mer generös migrationspolitik och värna asylrätten.',
+      C: 'Vill ha en human migrationspolitik och betonar integration.',
+      KD: 'Vill ha en stram migrationspolitik men värna asylrätten.',
+      MP: 'Vill ha en mer generös migrationspolitik och starkare asylrätt.',
+      L: 'Vill ha en reglerad migration kombinerat med stark integration.'
+    }
   },
 
   {
-    code: 'V',
-    name: 'Vänsterpartiet',
-    leader: 'Nooshi Dadgostar',
-    founded: '1917',
-    ideology: 'Socialism & feminism',
-    desc:
-      'Driver frågor om ökad jämlikhet, välfärd och fackliga rättigheter.',
-    logo: parties[3].logo,
-    photo: parties[3].photo,
-    site: parties[3].site,
-    ne: parties[3].ne
+    title: 'Klimat & miljö',
+
+    positions: {
+      S: 'Vill minska utsläppen genom investeringar och styrmedel.',
+      M: 'Vill främst använda teknik, kärnkraft och ekonomiska styrmedel.',
+      SD: 'Vill prioritera billig energi och är mer försiktiga med klimatstyrmedel.',
+      V: 'Vill ha kraftfull klimatpolitik och stora gröna investeringar.',
+      C: 'Vill ha ambitiös klimatpolitik med fokus på företag och landsbygd.',
+      KD: 'Vill minska utsläppen men betonar teknik och kärnkraft.',
+      MP: 'Har klimat och miljö som en av sina viktigaste frågor.',
+      L: 'Vill ha ambitiös klimatpolitik och betonar EU-samarbete.'
+    }
   },
 
   {
-    code: 'C',
-    name: 'Centerpartiet',
-    leader: 'Elisabeth Thand Ringqvist',
-    founded: '1913',
-    ideology: 'Socialliberalism',
-    desc:
-      'Prioriterar landsbygdsfrågor, grön omställning, småföretagande och valfrihet.',
-    logo: parties[4].logo,
-    photo: parties[4].photo,
-    site: parties[4].site,
-    ne: parties[4].ne
-  },
+    title: 'Lag & ordning',
 
-  {
-    code: 'KD',
-    name: 'Kristdemokraterna',
-    leader: 'Ebba Busch',
-    founded: '1964',
-    ideology: 'Kristdemokrati',
-    desc:
-      'Driver frågor om familjens valfrihet, sjukvård och trygghet för äldre.',
-    logo: parties[5].logo,
-    photo: parties[5].photo,
-    site: parties[5].site,
-    ne: parties[5].ne
-  },
-
-  {
-    code: 'MP',
-    name: 'Miljöpartiet',
-    leader: 'Amanda Lind & Daniel Helldén',
-    founded: '1981',
-    ideology: 'Grön ideologi',
-    desc:
-      'Fokuserar på klimat- och miljöpolitik, biologisk mångfald och hållbar omställning.',
-    logo: parties[6].logo,
-    photo: parties[6].photo,
-    site: parties[6].site,
-    ne: parties[6].ne
-  },
-
-  {
-    code: 'L',
-    name: 'Liberalerna',
-    leader: 'Simona Mohamsson',
-    founded: '1934',
-    ideology: 'Socialliberalism',
-    desc:
-      'Lägger fokus på skola och utbildning, individens frihet och EU-samarbete.',
-    logo: parties[7].logo,
-    photo: parties[7].photo,
-    site: parties[7].site,
-    ne: parties[7].ne
+    positions: {
+      S: 'Vill stärka polis och rättsväsende samt förebygga brott.',
+      M: 'Vill ha hårdare straff och fler poliser.',
+      SD: 'Vill ha hårdare straff och kraftigt stärkt polis.',
+      V: 'Vill kombinera polisinsatser med social brottsförebyggande politik.',
+      C: 'Vill stärka polis och rättsväsende men betonar rättssäkerhet.',
+      KD: 'Vill ha hårdare straff och fler poliser.',
+      MP: 'Betonar förebyggande arbete och sociala insatser.',
+      L: 'Vill stärka polis, rättsväsende och rättssäkerhet.'
+    }
   }
 
 ];
 
 
+function renderIssues() {
+
+  document.getElementById(
+    'issueGrid'
+  ).innerHTML =
+
+    issues.map(issue => `
+
+      <div class="issueCard">
+
+        <h3>
+          ${issue.title}
+        </h3>
+
+        ${parties.map(p => `
+
+          <div class="partyPosition">
+
+            <span
+              class="partyTag"
+              style="
+                background:${p.color};
+                color:${['KD','M','L'].includes(p.name)
+                  ? 'white'
+                  : 'black'
+              ">
+              ${p.name}
+            </span>
+
+            ${issue.positions[p.name]}
+
+          </div>
+
+        `).join('')}
+
+      </div>
+
+    `).join('');
+
+  const p1 =
+    document.getElementById('p1Select');
+
+  const p2 =
+    document.getElementById('p2Select');
+
+  const options =
+    parties.map(p =>
+
+      `<option value="${p.name}">
+        ${p.full}
+      </option>`
+
+    ).join('');
+
+  p1.innerHTML = options;
+  p2.innerHTML = options;
+
+  p2.value = 'M';
+
+  updateComparison();
+
+}
+
+
+function updateComparison() {
+
+  const a =
+    document.getElementById(
+      'p1Select'
+    ).value;
+
+  const b =
+    document.getElementById(
+      'p2Select'
+    ).value;
+
+  if (!a || !b) {
+    return;
+  }
+
+  const pa =
+    parties.find(
+      p => p.name === a
+    );
+
+  const pb =
+    parties.find(
+      p => p.name === b
+    );
+
+  let same = [];
+  let diff = [];
+
+  issues.forEach(issue => {
+
+    const x =
+      issue.positions[a];
+
+    const y =
+      issue.positions[b];
+
+    if (x === y) {
+
+      same.push(issue.title);
+
+    } else {
+
+      diff.push(issue.title);
+
+    }
+
+  });
+
+  document.getElementById(
+    'compareResult'
+  ).innerHTML = `
+
+    <h3>
+      ${pa.full} jämfört med ${pb.full}
+    </h3>
+
+    <p>
+      <b>Likheter:</b>
+      ${
+        same.length
+          ? same.join(', ')
+          : 'Inga tydliga likheter i den här förenklade jämförelsen.'
+      }
+    </p>
+
+    <p>
+      <b>Skillnader:</b>
+      ${
+        diff.length
+          ? diff.join(', ')
+          : 'Inga tydliga skillnader.'
+      }
+    </p>
+
+    <hr>
+
+    <p>
+      <b>${pa.name}:</b>
+      ${issues[0].positions[a]}
+    </p>
+
+    <p>
+      <b>${pb.name}:</b>
+      ${issues[0].positions[b]}
+    </p>
+
+  `;
+
+}
+
+
 /* ==========================================================
-   ELEVESPEL
+   ELEVSPEL
    ========================================================== */
 
 let logoGameOrder = [];
-
 let leaderGameOrder = [];
 
 
-function shuffle(array) {
+function shuffle(arr) {
 
-  return [...array]
+  return [...arr]
     .sort(
       () => Math.random() - 0.5
     );
@@ -3238,7 +3136,13 @@ function renderGames() {
             <img
               src="${p.logo}"
               alt="Partilogo"
-              class="gameLogo" referrerpolicy="no-referrer" loading="eager" onerror="this.style.display='none'; this.parentElement.classList.add('imageMissing')">
+              class="gameLogo"
+              referrerpolicy="no-referrer"
+              loading="eager"
+              onerror="
+                this.style.display='none';
+                this.parentElement.classList.add('imageMissing')
+              ">
 
             <select
               id="logoAnswer${i}">
@@ -3286,7 +3190,13 @@ function renderGames() {
             <img
               src="${p.photo}"
               alt="${p.leader}"
-              class="gameLeader" referrerpolicy="no-referrer" loading="eager" onerror="this.style.display='none'; this.parentElement.classList.add('imageMissing')">
+              class="gameLeader"
+              referrerpolicy="no-referrer"
+              loading="eager"
+              onerror="
+                this.style.display='none';
+                this.parentElement.classList.add('imageMissing')
+              ">
 
             <div>
 
@@ -3357,12 +3267,10 @@ function checkLogoGame() {
           'logoAnswer' + i
         );
 
-
       item.classList.remove(
         'correct',
         'incorrect'
       );
-
 
       if (
         answer.value === p.name
@@ -3426,12 +3334,10 @@ function checkLeaderGame() {
           'leaderAnswer' + i
         );
 
-
       item.classList.remove(
         'correct',
         'incorrect'
       );
-
 
       if (
         answer.value === p.name
@@ -3509,6 +3415,22 @@ try {
   }
 
 } catch (e) {}
+
+
+/* ==========================================================
+   STÄNG POPUP MED ESC
+   ========================================================== */
+
+document.addEventListener(
+  'keydown',
+  function(event) {
+
+    if (event.key === 'Escape') {
+      closeAnalysisModal();
+    }
+
+  }
+);
 
 
 /* ==========================================================
