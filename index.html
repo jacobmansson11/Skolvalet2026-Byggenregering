@@ -4,13 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bygg en regering – Skolvalet</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+  
   <style>
-
     :root {
       --bg-main: #f8fafc;
       --bg-card: #ffffff;
@@ -22,20 +20,14 @@
       --accent: #2563eb;
       --success: #16a34a;
       --danger: #dc2626;
-      --warning: #d97706;
       --radius: 12px;
-      --shadow: 0 4px 6px -1px rgba(0,0,0,0.05),
-                0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont,
-                   "Segoe UI", Roboto, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg-main);
       color: var(--text-main);
       line-height: 1.5;
@@ -49,34 +41,13 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid #1e293b;
-      gap: 20px;
     }
+    header h1 { margin: 0; font-size: 1.5rem; font-weight: 700; }
+    header p { margin: 4px 0 0; color: #94a3b8; font-size: 0.9rem; }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    header p {
-      margin: 4px 0 0;
-      color: #94a3b8;
-      font-size: 0.9rem;
-    }
-
-    .wrap {
-      max-width: 1400px;
-      margin: auto;
-      padding: 24px 20px;
-    }
-
-    .tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
+    .wrap { max-width: 1400px; margin: auto; padding: 24px 20px; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+    
     .layout {
       display: grid;
       grid-template-columns: 340px 1fr 320px;
@@ -89,19 +60,10 @@
       padding: 20px;
       box-shadow: var(--shadow);
       border: 1px solid var(--border-color);
-      margin-bottom: 20px;
     }
+    .card h2 { margin-top: 0; font-size: 1.15rem; font-weight: 600; color: #1e293b; }
 
-    .card h2 {
-      margin-top: 0;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: #1e293b;
-    }
-
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
 
     button {
       border: 0;
@@ -112,33 +74,10 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-
-    button.dark {
-      background: var(--primary);
-      color: white;
-    }
-
-    button.dark:hover {
-      background: var(--primary-hover);
-    }
-
-    button.light {
-      background: #f1f5f9;
-      color: var(--text-main);
-    }
-
-    button.light:hover {
-      background: #e2e8f0;
-    }
-
-    button.blue {
-      background: var(--accent);
-      color: white;
-    }
-
-    button.blue:hover {
-      background: #1d4ed8;
-    }
+    button.dark { background: var(--primary); color: white; }
+    button.dark:hover { background: var(--primary-hover); }
+    button.light { background: #f1f5f9; color: var(--text-main); }
+    button.light:hover { background: #e2e8f0; }
 
     .party {
       display: grid;
@@ -147,13 +86,7 @@
       align-items: center;
       margin: 10px 0;
     }
-
-    .swatch {
-      width: 24px;
-      height: 24px;
-      border-radius: 6px;
-    }
-
+    .swatch { width: 24px; height: 24px; border-radius: 6px; }
     .party input {
       width: 100%;
       padding: 6px 10px;
@@ -162,58 +95,18 @@
       font-size: 0.9rem;
     }
 
-    .small {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
+    .small { font-size: 0.85rem; color: var(--text-muted); }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat { background: #f8fafc; padding: 12px; text-align: center; border-radius: 8px; border: 1px solid var(--border-color); }
+    .stat b { font-size: 1.4rem; display: block; color: var(--primary); }
 
-    .stat {
-      background: #f8fafc;
-      padding: 12px;
-      text-align: center;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
-    }
+    .bar { height: 16px; background: #e2e8f0; border-radius: 20px; margin: 16px 0; overflow: hidden; }
+    .fill { height: 100%; border-radius: 20px; transition: width 0.3s ease, background-color 0.3s ease; }
 
-    .stat b {
-      font-size: 1.4rem;
-      display: block;
-      color: var(--primary);
-    }
-
-    .bar {
-      height: 16px;
-      background: #e2e8f0;
-      border-radius: 20px;
-      margin: 16px 0;
-      overflow: hidden;
-    }
-
-    .fill {
-      height: 100%;
-      border-radius: 20px;
-      transition: width 0.3s ease, background-color 0.3s ease;
-    }
-
-    .status {
-      font-weight: 600;
-      margin: 12px 0;
-      font-size: 1rem;
-    }
-
-    .ok {
-      color: var(--success);
-    }
-
-    .no {
-      color: var(--danger);
-    }
+    .status { font-weight: 600; margin: 12px 0; font-size: 1rem; }
+    .ok { color: var(--success); }
+    .no { color: var(--danger); }
 
     .parliament {
       min-height: 480px;
@@ -226,39 +119,17 @@
       padding: 20px;
       gap: 4px;
     }
-
-    .row {
-      display: flex;
-      justify-content: center;
-      gap: 4px;
-    }
-
+    .row { display: flex; justify-content: center; gap: 4px; }
     .seat {
       width: 16px;
       height: 16px;
       border-radius: 50% 50% 30% 30%;
       transition: transform 0.1s ease;
     }
+    .seat.gov { transform: scale(1.25); box-shadow: 0 0 0 2px #0f172a; z-index: 2; }
 
-    .seat.gov {
-      transform: scale(1.25);
-      box-shadow: 0 0 0 2px #0f172a;
-      z-index: 2;
-    }
-
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 14px;
-    }
-
-    .legend span {
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 4px 8px;
-      border-radius: 6px;
-    }
+    .legend { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+    .legend span { font-size: 0.75rem; font-weight: 600; padding: 4px 8px; border-radius: 6px; }
 
     .coal {
       display: flex;
@@ -272,24 +143,9 @@
       border: 2px solid transparent;
       transition: all 0.15s ease;
     }
-
-    .coal:hover {
-      background: #f1f5f9;
-    }
-
-    .coal.active {
-      background: #eff6ff;
-      border-color: var(--accent);
-    }
-
-    .dot {
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      border-radius: 4px;
-      vertical-align: -2px;
-      margin-right: 8px;
-    }
+    .coal:hover { background: #f1f5f9; }
+    .coal.active { background: #eff6ff; border-color: var(--accent); }
+    .dot { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin-right: 8px; }
 
     .box {
       background: #fefce8;
@@ -299,104 +155,10 @@
       padding: 14px;
       margin-top: 14px;
     }
+    hr { border: 0; border-top: 1px solid var(--border-color); margin: 20px 0; }
 
-    .introBox {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      color: #1e3a8a;
-      border-radius: 10px;
-      padding: 18px;
-      margin-bottom: 20px;
-    }
-
-    .analysisBox {
-      background: #f8fafc;
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 14px;
-    }
-
-    .analysisBox h3 {
-      margin-top: 0;
-    }
-
-    .analysisGood {
-      background: #f0fdf4;
-      border-color: #bbf7d0;
-    }
-
-    .analysisWarn {
-      background: #fffbeb;
-      border-color: #fde68a;
-    }
-
-    /* ==========================================================
-       POPUP FÖR ANALYS AV REGERINGSVAL
-       ========================================================== */
-
-    .analysisModal {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.65);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 9999;
-    }
-
-    .analysisModal.hidden {
-      display: none !important;
-    }
-
-    .analysisModalContent {
-      width: min(680px, 100%);
-      max-height: 90vh;
-      overflow-y: auto;
-      background: white;
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-      position: relative;
-    }
-
-    .analysisModalClose {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 40px;
-      height: 40px;
-      padding: 0;
-      border-radius: 50%;
-      background: #f1f5f9;
-      color: #0f172a;
-      font-size: 1.4rem;
-      line-height: 1;
-    }
-
-    .analysisModalClose:hover {
-      background: #e2e8f0;
-    }
-
-    .analysisModalContent .analysisBox {
-      margin-top: 0;
-    }
-
-    hr {
-      border: 0;
-      border-top: 1px solid var(--border-color);
-      margin: 20px 0;
-    }
-
-    /* FAKTAKORT */
-
-    .factgrid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
+    /* FAKTAKORT DESIGN */
+    .factgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .factCard {
       border: 1px solid var(--border-color);
       border-radius: var(--radius);
@@ -406,33 +168,24 @@
       flex-direction: column;
       gap: 12px;
     }
-
     .factHeader {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-
     .factLogoImg {
-      width: 50px;
-      height: 50px;
+      width: 44px;
+      height: 44px;
       object-fit: contain;
       border-radius: 6px;
     }
-
-    .factTitle {
-      margin: 0;
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
-
+    .factTitle { margin: 0; font-size: 1.2rem; font-weight: 700; }
     .factBody {
       display: grid;
       grid-template-columns: 90px 1fr;
       gap: 16px;
       align-items: start;
     }
-
     .leaderImg {
       width: 90px;
       height: 110px;
@@ -440,104 +193,10 @@
       border-radius: 8px;
       background: #e2e8f0;
     }
+    .factText { font-size: 0.9rem; }
+    .factText p { margin: 4px 0; }
 
-    .factText {
-      font-size: 0.9rem;
-    }
-
-    .factText p {
-      margin: 4px 0;
-    }
-
-    .linkRow {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
-
-    .linkButton {
-      display: inline-block;
-      text-decoration: none;
-      padding: 7px 10px;
-      border-radius: 7px;
-      background: #f1f5f9;
-      color: #0f172a;
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
-    .linkButton:hover {
-      background: #e2e8f0;
-    }
-
-    /* SAKFRÅGOR */
-
-    .issueGrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
-
-    .issueCard {
-      background: #fff;
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius);
-      padding: 20px;
-    }
-
-    .issueCard h3 {
-      margin-top: 0;
-      color: var(--accent);
-      border-bottom: 2px solid #eff6ff;
-      padding-bottom: 8px;
-    }
-
-    .partyPosition {
-      margin-bottom: 12px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid #f1f5f9;
-    }
-
-    .partyTag {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-weight: bold;
-      font-size: 0.8rem;
-      margin-right: 6px;
-    }
-
-    .compareSelects {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .compareSelects select {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: 1px solid var(--border-color);
-      font-size: 1rem;
-    }
-
-    .compareBox {
-      background: #f0f9ff;
-      border: 1px solid #bae6fd;
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-
-    /* LÄRARLÄGE */
-
-    .lock {
-      max-width: 400px;
-      margin: 40px auto;
-      text-align: center;
-    }
-
+    .lock { max-width: 400px; margin: 40px auto; text-align: center; }
     .lock input {
       font-size: 1.5rem;
       letter-spacing: 6px;
@@ -548,2904 +207,817 @@
       border-radius: 8px;
       margin-bottom: 12px;
     }
+    .error { color: var(--danger); font-weight: 600; min-height: 20px; font-size: 0.85rem; }
 
-    .error {
-      color: var(--danger);
-      font-weight: 600;
-      min-height: 20px;
-      font-size: 0.85rem;
-    }
 
-    /* ELEVSPEL */
-
-    .gameGrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
-
-    .gameCard {
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 20px;
-      background: white;
-    }
-
-    .gameItem {
-      display: grid;
-      grid-template-columns: 70px 1fr;
-      align-items: center;
-      gap: 12px;
-      margin: 10px 0;
-      padding: 10px;
-      background: #f8fafc;
-      border-radius: 8px;
-    }
-
-    .gameLogo {
-      width: 60px;
-      height: 60px;
-      object-fit: contain;
-      background: white;
-      border-radius: 6px;
-    }
-
-    .gameLeader {
-      width: 60px;
-      height: 75px;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    .imageMissing::before {
-      content: "Bild kunde inte laddas";
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      min-height: 60px;
-      padding: 4px;
-      box-sizing: border-box;
-      font-size: 10px;
-      text-align: center;
-      color: #64748b;
-      background: #e2e8f0;
-      border-radius: 6px;
-    }
-
-    .gameItem select {
-      width: 100%;
-      padding: 8px;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      font-family: inherit;
-      background: white;
-    }
-
-    .scoreBox {
-      margin-top: 15px;
-      padding: 14px;
-      border-radius: 8px;
-      background: #f1f5f9;
-      font-weight: 600;
-    }
-
-    .correct {
-      border: 2px solid #22c55e !important;
-      background: #f0fdf4 !important;
-    }
-
-    .incorrect {
-      border: 2px solid #ef4444 !important;
-      background: #fef2f2 !important;
-    }
-
-    .gameIntro {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      color: #166534;
-      border-radius: 10px;
-      padding: 16px;
-      margin-bottom: 20px;
-    }
-
-    .missionProgress {
-      height: 8px;
-      background: #e2e8f0;
-      border-radius: 20px;
-      overflow: hidden;
-      margin: 10px 0 15px;
-    }
-
-    .missionProgressFill {
-      height: 100%;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
+    .position-section { margin-top: 24px; }
+    .position-section > h2 { border-bottom: 2px solid var(--border-color); padding-bottom: 10px; }
+    .position-card { border:1px solid var(--border-color); border-radius:10px; padding:16px; margin:12px 0; background:#fff; }
+    .position-card h3 { margin:0 0 12px; font-size:1rem; }
+    .position-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px 18px; }
+    .position-row { display:grid; grid-template-columns:14px 35px 1fr; gap:7px; align-items:start; font-size:.88rem; padding:7px 0; }
+    .position-row .dot { margin-top:5px; }
+    .similar { margin-top:10px; padding:10px; background:#f8fafc; border-radius:8px; font-size:.82rem; }
+    .similar span { display:inline-block; margin:3px 4px; padding:3px 7px; border-radius:5px; background:#e2e8f0; }
+    .introBox{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:16px;margin-bottom:20px}
+    .introBox h2{margin:0 0 6px}
+    .introBox p{margin:6px 0}
+    .voteTotal{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+    .voteTotal label{font-weight:600;font-size:.9rem}
+    .voteTotal input{width:100%;padding:9px;border:1px solid var(--border-color);border-radius:7px;margin-top:4px}
+    .threshold{font-size:.78rem;padding:3px 6px;border-radius:5px;background:#fee2e2;color:#991b1b;font-weight:700}
+    .eligible{background:#dcfce7;color:#166534}
+    .linkRow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .linkButton{display:inline-block;padding:7px 10px;border-radius:7px;background:#eff6ff;color:#1d4ed8;text-decoration:none;font-size:.82rem;font-weight:600}
+    .gameGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .gameCard{border:1px solid var(--border-color);border-radius:12px;padding:16px;background:#fff}
+    .gameItem{display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:center;margin:10px 0;padding:10px;background:#f8fafc;border-radius:8px}
+    .gameItem img{width:70px;height:70px;object-fit:contain;border-radius:8px;background:#fff}
+    .gameItem select{width:100%;padding:8px;border:1px solid var(--border-color);border-radius:7px}
+    .scoreBox{margin-top:10px;padding:10px;border-radius:8px;background:#f8fafc;font-weight:700}
+    .modalBackdrop{position:fixed;inset:0;background:rgba(15,23,42,.72);display:flex;align-items:center;justify-content:center;padding:20px;z-index:1000}
+    .modal{background:#fff;max-width:720px;width:100%;max-height:90vh;overflow:auto;border-radius:18px;box-shadow:0 25px 60px rgba(0,0,0,.25);padding:26px}
+    .modal h2{margin:0 0 5px;font-size:1.6rem}.modal h3{margin-bottom:6px}.modal .analysisBox{background:#f8fafc;border-radius:10px;padding:12px;margin:10px 0}
+    .modal .successBanner{background:#dcfce7;color:#166534;padding:12px;border-radius:10px;font-weight:700;margin-bottom:14px}
+    .modalClose{width:100%;margin-top:14px;font-size:1rem}
+    .gameCorrect{border:2px solid #16a34a!important;background:#f0fdf4!important}.gameWrong{border:2px solid #dc2626!important;background:#fef2f2!important}
+    @media (max-width:700px){.gameGrid,.voteTotal{grid-template-columns:1fr}}
+    @media (max-width: 700px) { .position-grid { grid-template-columns:1fr; } }
 
     @media (max-width: 1050px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .factgrid {
-        grid-template-columns: 1fr;
-      }
+      .layout { grid-template-columns: 1fr; }
+      .factgrid { grid-template-columns: 1fr; }
     }
-
-    @media (max-width: 650px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .factBody {
-        grid-template-columns: 1fr;
-      }
-    }
-
   </style>
 </head>
-
 <body>
 
 <header>
-
   <div>
     <h1>🏛️ Bygg en regering</h1>
-    <p>Utgå från ert skolval och försök få ihop en regering som kan få stöd i riksdagen.</p>
+    <p>Utgå från ert skolval och försök få ihop 175 mandat.</p>
   </div>
-
-  <button class="light" onclick="resetAll()">
-    Återställ elevuppdrag
-  </button>
-
+  <button class="light" onclick="resetAll()">Återställ</button>
 </header>
 
 <div class="wrap">
-
-  <!-- FLIKAR -->
-
   <div class="tabs">
-
-    <button id="sTab"
-            class="dark"
-            onclick="showPage('student')">
-      🎓 Elevläge
-    </button>
-
-    <button id="fTab"
-            class="light"
-            onclick="showPage('facts')">
-      📚 Partierna
-    </button>
-
-    <button id="iTab"
-            class="light"
-            onclick="showPage('issues')">
-      ⚖️ Sakfrågor & Jämför
-    </button>
-
-    <button id="gTab"
-            class="light"
-            onclick="showPage('games')">
-      🎮 Elevspel
-    </button>
-
-    <button id="tTab"
-            class="light"
-            onclick="openTeacher()">
-      ⚙️ Lärarläge
-    </button>
-
+    <button id="sTab" class="dark" onclick="showPage('student')">🎓 Elevläge</button>
+    <button id="gTab" class="light" onclick="showPage('games')">🎮 Elevspel</button>
+    <button id="fTab" class="light" onclick="showPage('facts')">📚 Partierna</button>
+    <button id="pTab" class="light" onclick="showPage('positions')">🗳️ Frågor & ställningstaganden</button>
+    <button id="tTab" class="light" onclick="openTeacher()">⚙️ Lärarläge</button>
   </div>
 
-
-  <!-- =====================================================
-       ELEVLÄGE
-       ===================================================== -->
-
+  <!-- ELEVLÄGE -->
   <div id="student">
-
-    <section class="introBox">
-
-      <h2 style="margin-top:0;">
-        🏛️ Talmannen behöver er hjälp!
-      </h2>
-
-      <p>
-        Efter ett riksdagsval behöver Sverige få en regering.
-        Talmannen leder arbetet med att föreslå en statsminister,
-        och riksdagen röstar sedan om förslaget.
-      </p>
-
-      <p>
-        Er uppgift är att försöka bygga en regering som har
-        <b>minst 175 av riksdagens 349 mandat</b>.
-        För att lyckas behöver ni få olika partier att samarbeta.
-      </p>
-
-      <p style="margin-bottom:0;">
-        Tänk därför inte bara på vilka partier som tillsammans
-        får tillräckligt många mandat – fundera också på
-        <b>vilka partier som faktiskt skulle kunna komma överens</b>.
-      </p>
-
-    </section>
-
-
+    <div class="introBox">
+      <h2>🏛️ Så bildas en regering</h2>
+      <p>Efter ett val behöver riksdagen få fram en regering. Talmannen leder arbetet med att föreslå en statsminister, och riksdagen tar ställning till förslaget.</p>
+      <p><b>Nu behöver talmannen din hjälp!</b> Förhandla med partierna, bygg en regering som har stöd av en majoritet av riksdagen och försök hitta kompromisser som partierna kan acceptera.</p>
+    </div>
     <div class="layout">
-
-      <!-- VÄNSTER -->
-
-      <section class="card">
-
-        <h2>Bygg din regering</h2>
-
-        <p class="small">
-          Klicka på partierna för att ta med dem i regeringen.
-          En regering räknas som klar när den har minst 175 mandat.
-        </p>
-
-        <div id="coalitions"></div>
-
-        <div id="missionBox" class="box"></div>
-
-        <hr>
-
-        <div id="govText"></div>
-
-        <button class="dark"
-                style="width:100%; margin-top:10px;"
-                onclick="clearGov()">
-          Ta bort alla
-        </button>
-
-      </section>
-
-
-      <!-- MITTEN -->
-
-      <section class="card">
-
-        <h2>Riksdagens 349 platser</h2>
-
-        <div class="stats">
-
-          <div class="stat">
-            <b>349</b>
-            platser
-          </div>
-
-          <div class="stat">
-            <b id="gSeats">0</b>
-            regering
-          </div>
-
-          <div class="stat">
-            <b id="oSeats">349</b>
-            övriga
-          </div>
-
-        </div>
-
-        <div class="bar">
-          <div id="fill" class="fill"></div>
-        </div>
-
-        <div id="status" class="status no"></div>
-
-        <div id="map" class="parliament"></div>
-
-        <div id="legend" class="legend"></div>
-
-      </section>
-
-
-      <!-- HÖGER -->
-
-      <section class="card">
-
-        <h2>Uppdragen</h2>
-
-        <div id="missionList" class="small"></div>
-
-        <hr>
-
-        <h2>Diskutera</h2>
-
-        <p class="small">
-          Vilka partier måste samarbeta?
-          Vilka kompromisser kan krävas?
-          Vilka frågor kan skapa konflikter?
-        </p>
-
-        <div id="discussionBox"></div>
-
-      </section>
-
-    </div>
-
-  </div>
-
-
-  <!-- =====================================================
-       PARTIERNA
-       ===================================================== -->
-
-  <div id="facts" class="hidden">
-
     <section class="card">
-
-      <h2>📚 Lär känna de åtta riksdagspartierna</h2>
-
-      <p class="small">
-        Klicka på partiernas hemsidor för att läsa mer om deras
-        politik. NE-länkarna leder till uppslagsartiklar om partierna.
-      </p>
-
-      <div id="factgrid" class="factgrid"></div>
-
-    </section>
-
-  </div>
-
-
-  <!-- =====================================================
-       SAKFRÅGOR
-       ===================================================== -->
-
-  <div id="issues" class="hidden">
-
-    <section class="card">
-
-      <h2>🔍 Jämför två partier</h2>
-
-      <p class="small">
-        Välj två partier för att direkt se var de är lika
-        och vad som skiljer dem åt.
-      </p>
-
-      <div class="compareSelects">
-
-        <select id="p1Select"
-                onchange="updateComparison()"></select>
-
-        <select id="p2Select"
-                onchange="updateComparison()"></select>
-
-      </div>
-
-      <div id="compareResult" class="compareBox"></div>
-
-    </section>
-
-
-    <section class="card">
-
-      <h2>⚖️ Viktiga sakfrågor och ställningstaganden</h2>
-
-      <p class="small">
-        Se vad partierna tycker inom olika politiska områden.
-      </p>
-
-      <div id="issueGrid" class="issueGrid"></div>
-
-    </section>
-
-  </div>
-
-
-  <!-- =====================================================
-       ELEVSPEL
-       ===================================================== -->
-
-  <div id="games" class="hidden">
-
-    <section class="card">
-
-      <h2>🎮 Elevspel – Hur bra kan du partierna?</h2>
-
-      <div class="gameIntro">
-
-        <b>Så fungerar spelet:</b>
-
-        <p>
-          Matcha varje partilogga med rätt parti och varje
-          partiledare med rätt parti.
-        </p>
-
-        <p style="margin-bottom:0;">
-          När du är klar klickar du på <b>Rätta</b>.
-          Spelet räknar automatiskt ut ditt resultat.
-        </p>
-
-      </div>
-
-      <div class="gameGrid">
-
-        <div class="gameCard">
-
-          <h3>🏷️ Matcha partiloggan</h3>
-
-          <div id="logoGame"></div>
-
-          <button class="blue"
-                  onclick="checkLogoGame()">
-            Rätta loggorna
-          </button>
-
-          <div id="logoScore"
-               class="scoreBox">
-            Inte rättat ännu.
-          </div>
-
-        </div>
-
-
-        <div class="gameCard">
-
-          <h3>👤 Matcha partiledaren</h3>
-
-          <div id="leaderGame"></div>
-
-          <button class="blue"
-                  onclick="checkLeaderGame()">
-            Rätta partiledarna
-          </button>
-
-          <div id="leaderScore"
-               class="scoreBox">
-            Inte rättat ännu.
-          </div>
-
-        </div>
-
-      </div>
-
+      <h2>Bygg din regering</h2>
+      <p class="small">Klicka på partierna för att ta med dem i regeringen.</p>
+      <div id="coalitions"></div>
+      <div id="missionBox" class="box"></div>
       <hr>
-
-      <button class="dark"
-              onclick="newGames()">
-        🔄 Blanda om och gör igen
-      </button>
-
+      <div id="govText"></div>
+      <button class="dark" style="width:100%; margin-top:10px;" onclick="clearGov()">Ta bort alla</button>
     </section>
 
-  </div>
-
-
-  <!-- =====================================================
-       LÄRARLÄGE
-       ===================================================== -->
-
-  <div id="teacher" class="hidden">
-
-    <section id="lock"
-             class="card lock">
-
-      <h2>🔒 Lärarläge</h2>
-
-      <p>
-        Ange den fyrsiffriga lärarkoden.
-      </p>
-
-      <input id="pin"
-             type="password"
-             inputmode="numeric"
-             maxlength="4"
-             placeholder="••••"
-             onkeydown="if(event.key==='Enter')unlock()">
-
-      <p id="pinError"
-         class="error"></p>
-
-      <button class="dark"
-              onclick="unlock()">
-        Lås upp
-      </button>
-
+    <section class="card">
+      <h2>Riksdagens 349 platser</h2>
+      <div class="stats">
+        <div class="stat"><b>349</b>platser</div>
+        <div class="stat"><b id="gSeats">0</b>regering</div>
+        <div class="stat"><b id="oSeats">349</b>övriga</div>
+      </div>
+      <div class="bar"><div id="fill" class="fill"></div></div>
+      <div id="status" class="status no"></div>
+      <div id="map" class="parliament"></div>
+      <div id="legend" class="legend"></div>
     </section>
 
-
-    <div id="teacherContent"
-         class="layout hidden">
-
-      <section class="card">
-
-        <h2>⚙️ Skolvalsresultat</h2>
-
-        <p class="small">
-          Skriv in ert resultat i procent.
-          Sidan räknar om till 349 mandat.
-          4 %-spärren används.
-        </p>
-
-        <div id="inputs"></div>
-
-        <button class="dark"
-                style="margin-top:10px; width:100%;"
-                onclick="normalize()">
-          Normalisera till 100 %
-        </button>
-
-        <p id="total"
-           class="small"></p>
-
-      </section>
-
-
-      <section class="card">
-
-        <h2>Förhandsvisning</h2>
-
-        <div id="teacherStats"></div>
-
-        <div id="teacherMap"
-             class="parliament"></div>
-
-        <div id="teacherLegend"
-             class="legend"></div>
-
-      </section>
-
-
-      <section class="card">
-
-        <h2>Lärarens kontroll</h2>
-
-        <button class="light"
-                style="width:100%;"
-                onclick="lockTeacher()">
-          Lås lärarläge
-        </button>
-
-        <hr>
-
-        <h3>Elevuppdrag</h3>
-
-        <div id="teacherMissions"></div>
-
-      </section>
-
+    <section class="card">
+      <h2>Uppdragen</h2>
+      <div id="missionList" class="small"></div>
+      <hr>
+      <h2>Diskutera</h2>
+      <p class="small">Vilka partier måste samarbeta? Vilka kompromisser kan krävas? Kan ett parti bli störst utan att ingå i regeringen?</p>
+    </section>
     </div>
-
   </div>
 
-</div>
-
-
-<!-- =====================================================
-     POPUP FÖR REGERINGSANALYS
-     ===================================================== -->
-
-<div id="analysisModal"
-     class="analysisModal hidden"
-     role="dialog"
-     aria-modal="true"
-     aria-labelledby="analysisModalTitle"
-     onclick="if(event.target === this) closeAnalysisModal()">
-
-  <div class="analysisModalContent">
-
-    <button class="analysisModalClose"
-            aria-label="Stäng analys"
-            onclick="closeAnalysisModal()">
-      ×
-    </button>
-
-    <div id="analysisModalBody"></div>
-
+  <!-- ELEVSPEL -->
+  <div id="games" class="hidden">
+    <section class="card">
+      <h2>🎮 Elevspel – hur bra kan du partierna?</h2>
+      <p class="small">Matcha logotyper och partiledare med rätt parti. Spelet är självrättande.</p>
+      <div class="gameGrid">
+        <div class="gameCard"><h3>🏷️ Matcha partiloggan</h3><div id="logoGame"></div><button class="dark" onclick="checkLogoGame()">Rätta loggorna</button><div id="logoScore" class="scoreBox">Inte rättat ännu.</div></div>
+        <div class="gameCard"><h3>👤 Matcha partiledaren</h3><div id="leaderGame"></div><button class="dark" onclick="checkLeaderGame()">Rätta partiledarna</button><div id="leaderScore" class="scoreBox">Inte rättat ännu.</div></div>
+      </div>
+      <hr><button class="light" onclick="newGames()">🔄 Blanda om och gör igen</button>
+    </section>
   </div>
 
+  <!-- FAKTALÄGE -->
+  <div id="facts" class="hidden">
+    <section class="card">
+      <h2>📚 Lär känna de åtta riksdagspartierna</h2>
+      <p class="small">Fakta och ideologier för Riksdagspartierna.</p>
+      <div id="factgrid" class="factgrid"></div>
+    </section>
+  </div>
+
+  <!-- POLITIKLÄGE -->
+  <div id="positions" class="hidden">
+    <section class="card">
+      <h2>🗳️ Viktiga frågor & ställningstaganden</h2>
+      <p class="small">Förenklade sammanfattningar av partiernas aktuella positioner inför valet 2026. Klicka på ett område för att se var partierna står. Likhetsmarkeringen är en pedagogisk förenkling – partier kan vara lika i en fråga och olika i en annan.</p>
+      <div id="positionAreas"></div>
+    </section>
+  </div>
+
+  <!-- LÄRARLÄGE -->
+  <div id="teacher" class="hidden">
+    <section id="lock" class="card lock">
+      <h2>🔒 Lärarläge</h2>
+      <p>Ange den fyrsiffriga lärarkoden.</p>
+      <input id="pin" type="password" inputmode="numeric" maxlength="4" placeholder="••••" onkeydown="if(event.key==='Enter')unlock()">
+      <p id="pinError" class="error"></p>
+      <button class="dark" onclick="unlock()">Lås upp</button>
+    </section>
+
+    <div id="teacherContent" class="layout hidden">
+      <section class="card">
+        <h2>⚙️ Skolvalsresultat</h2>
+        <p class="small"><b>Skriv in röster, inte procent.</b> Hemsidan räknar själv ut procent och mandat. Partier under 4 % får inga mandat i denna skolvalssimulering.</p>
+        <div class="voteTotal">
+          <label>Totalt antal giltiga röster<input id="totalVotes" type="number" min="0" step="1" value="1000" oninput="updateVoteTotalOnly()"></label>
+          <div class="box" style="margin:0">💡 Tips: Du kan skriva in hela skolvalet först. Mandaten räknas när du klickar på <b>Uppdatera förhandsvisning</b>.</div>
+        </div>
+        <div id="inputs"></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px;">
+          <button class="dark" onclick="updateTeacherPreview()">Uppdatera förhandsvisning</button>
+          <button class="light" onclick="normalize()">Normalisera till 100 %</button>
+        </div>
+        <p class="small">Partierna sorteras inte om medan du skriver. Ett parti under 4 % markeras och får 0 mandat.</p>
+        <p id="total" class="small"></p>
+      </section>
+
+      <section class="card">
+        <h2>Förhandsvisning</h2>
+        <div id="teacherStats"></div>
+        <div id="teacherMap" class="parliament"></div>
+        <div id="teacherLegend" class="legend"></div>
+      </section>
+
+      <section class="card">
+        <h2>Lärarens kontroll</h2>
+        <button class="light" style="width:100%;" onclick="lockTeacher()">Lås lärarläge</button>
+        <hr>
+        <h3>Elevuppdrag</h3>
+        <div id="teacherMissions"></div>
+      </section>
+    </div>
+  </div>
 </div>
 
+<div id="successModal" class="modalBackdrop hidden" onclick="if(event.target===this)closeSuccessModal()">
+  <div class="modal">
+    <div id="successModalContent"></div>
+    <button class="dark modalClose" onclick="closeSuccessModal(); nextMission();">Nästa uppdrag →</button>
+  </div>
+</div>
 
 <script>
-
-/* ==========================================================
-   NOLLSTÄLL UPPDRAG VID VARJE NY SIDOLADDNING
-   ========================================================== */
-
-localStorage.removeItem('schoolGovMission');
-
-
-/* ==========================================================
-   PARTIER
-   ========================================================== */
-
 const parties = [
-
-  {
-    name: 'S',
-    full: 'Socialdemokraterna',
-    color: '#e8112d',
-    pct: 30,
-
-    leader: 'Magdalena Andersson',
-
-    logo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS58D4cj3Cb8E-h2AOZa3z_3YVTC2RhghcLxZa80XFjpA&s=10',
-
-    photo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt9dQBYmCDZb6K9F7xxO6nl6pAfUJdTXdcDrSLOwH5cngaBXVOU_wFWYJ_xH2FfIfXtnfEgDZU4-X1-APAQXVVE-wR3MuRijgar89ZxmTkNw&s=10',
-
-    site:
-      'https://www.socialdemokraterna.se/',
-
-    ne:
-      'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/sveriges-socialdemokratiska-arbetareparti'
-  },
-
-  {
-    name: 'M',
-    full: 'Moderaterna',
-    color: '#52bdec',
-    pct: 20,
-
-    leader: 'Ulf Kristersson',
-
-    logo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG9zFgfVMnoJlfb7yg97fBTkwgc8G7zn2j4i1S-ZK0xA&s=10',
-
-    photo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQF9dZMGLnZXL_c5JSkNaw0Ayjjb-tKgzr0oeHb-lZIpiWKrvBcz0fQ3mIq52MQHXX1hDZ0IT-mioXxlFgy7EfuxqWm9xP6rcfm1MaaWmgQQ&s=10',
-
-    site:
-      'https://moderaterna.se/',
-
-    ne:
-      'https://www.ne.se/uppslagsverk/encyklopedi/article/moderata-samlingspartiet'
-  },
-
-  {
-    name: 'SD',
-    full: 'Sverigedemokraterna',
-    color: '#ffdd00',
-    pct: 20,
-
-    leader: 'Jimmie Åkesson',
-
-    logo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeXGeOV7xBsiMbNGB5oAT3R7XxFfCrYmMghLmPw0ffmQ&s=10',
-
-    photo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgny9d6ABGyo3O_YwOs5qPrMK3w6G85tQUfrAXgaycrQ&s',
-
-    site:
-      'https://www.sverigedemokraterna.se/',
-
-    ne:
-      'https://www.ne.se/uppslagsverk/encyklopedi/adult/sverigedemokraterna'
-  },
-
-  {
-    name: 'V',
-    full: 'Vänsterpartiet',
-    color: '#da291c',
-    pct: 7,
-
-    leader: 'Nooshi Dadgostar',
-
-    logo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4eybFWpuN-QIFGF07-pUBhnFlCKfkiCXCs2hrSSgnqA&s',
-
-    photo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDyg9jzsaD-2ecprAJH9ekgxobv4YXf1IFdP3BSON7DRLIX1N0kdHXnK0nZE9UWRN44Z_htVKNGwxt9RnslDDAup66m99n0GTAXkmJGHdw&s=10',
-
-    site:
-      'https://www.vansterpartiet.se/',
-
-    ne:
-      'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/v%C3%A4nsterpartiet'
-  },
-
-  {
-    name: 'C',
-    full: 'Centerpartiet',
-    color: '#009933',
-    pct: 6,
-
-    leader: 'Elisabeth Thand Ringqvist',
-
-    logo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAv7DK_eJfEYUuJBJyntsB0sZPTwrsIg4RH18Pu-5Ykg&s=10',
-
-    photo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT20NaNPBcF1pNXxKZYv_vim7Em51FWuV_8QGovVueZUA&s=10',
-
-    site:
-      'https://www.centerpartiet.se/',
-
-    ne:
-      'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/centerpartiet'
-  },
-
-  {
-    name: 'KD',
-    full: 'Kristdemokraterna',
-    color: '#000077',
-    pct: 5,
-
-    leader: 'Ebba Busch',
-
-    logo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc9KEZuJc11-26KzqpWfJwkn6qi08yV5H-EUVxZ3lA7g&s=10',
-
-    photo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Uuei0_1lHe7pWx4gS_gbPmGSCdJgMZBfpMbT1a2oWg&s=10',
-
-    site:
-      'https://kristdemokraterna.se/',
-
-    ne:
-      'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/kristdemokraterna'
-  },
-
-  {
-    name: 'MP',
-    full: 'Miljöpartiet',
-    color: '#83cf39',
-    pct: 5,
-
-    leader: 'Amanda Lind & Daniel Helldén',
-
-    logo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzksz1yPzLJGtUkoOOOKjXMdc-AckkAFxfjbvXj-GAHw&s=10',
-
-    photo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3DEB_PeZjlhcS2MvEzHkmtd22_FYZ2hbJEn_AKjBFzQ&s=10',
-
-    site:
-      'https://www.mp.se/',
-
-    ne:
-      'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/milj%C3%B6partiet-de-gr%C3%B6na'
-  },
-
-  {
-    name: 'L',
-    full: 'Liberalerna',
-    color: '#006ab3',
-    pct: 3,
-
-    leader: 'Simona Mohamsson',
-
-    logo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0Vlit7NmKds_i71oEh2qCzwqR0WCoBB1a5Q6lRrXfQg&s=10',
-
-    photo:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrUmVppuUjXq-zVwxm6PhVqx-fQsBbJH5SCs-FmndbGA&s=10',
-
-    site:
-      'https://www.liberalerna.se/',
-
-    ne:
-      'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/liberalerna'
-  }
-
+  { name: 'S', full: 'Socialdemokraterna', color: '#e8112d', pct: 30 },
+  { name: 'M', full: 'Moderaterna', color: '#52bdec', pct: 20 },
+  { name: 'SD', full: 'Sverigedemokraterna', color: '#ffdd00', pct: 20 },
+  { name: 'V', full: 'Vänsterpartiet', color: '#da291c', pct: 7 },
+  { name: 'C', full: 'Centerpartiet', color: '#009933', pct: 6 },
+  { name: 'KD', full: 'Kristdemokraterna', color: '#000077', pct: 5 },
+  { name: 'MP', full: 'Miljöpartiet', color: '#83cf39', pct: 5 },
+  { name: 'L', full: 'Liberalerna', color: '#006ab3', pct: 3 }
 ];
-
-
-/* ==========================================================
-   REGERING
-   ========================================================== */
 
 let gov = new Set();
 
-
-/* ==========================================================
-   MANDAT
-   ========================================================== */
-
 function counts() {
-
-  let q = [];
-
-  parties
-    .filter(p => p.pct >= 4)
-    .forEach(p => {
-
-      for (let k = 0; k < 349; k++) {
-
-        q.push({
-          n: p.name,
-          v: p.pct / (k ? 2 * k + 1 : 1.4)
-        });
-
-      }
-
-    });
-
-  q.sort((a, b) => b.v - a.v);
-
-  let c = Object.fromEntries(
-    parties.map(p => [p.name, 0])
-  );
-
-  q.slice(0, 349).forEach(x => c[x.n]++);
-
+  const eligible = parties.filter(p => p.pct >= 4 && p.pct > 0);
+  const q = [];
+  eligible.forEach(p => {
+    for (let k = 0; k < 349; k++) {
+      const divisor = k === 0 ? 1.4 : (2 * k + 1);
+      q.push({ n:p.name, v:p.pct / divisor });
+    }
+  });
+  q.sort((a,b) => b.v-a.v);
+  const c = Object.fromEntries(parties.map(p => [p.name,0]));
+  q.slice(0,349).forEach(x => c[x.n]++);
   return c;
 }
 
-
-/* ==========================================================
-   RIKSDAGSKARTA
-   ========================================================== */
-
 function renderMap(el, c, govMode) {
-
   el.innerHTML = '';
-
   let arr = [];
-
   parties.forEach(p => {
-
-    for (let i = 0; i < c[p.name]; i++) {
-
-      arr.push(p);
-
-    }
-
+    for (let i = 0; i < c[p.name]; i++) arr.push(p);
   });
-
   let idx = 0;
-
   for (let r = 0; r < 14; r++) {
-
     let row = document.createElement('div');
-
     row.className = 'row';
-
-    let n = Math.min(
-      40,
-      10 + Math.round(r * 2.4)
-    );
-
-    for (
-      let j = 0;
-      j < n && idx < arr.length;
-      j++, idx++
-    ) {
-
-      let p = arr[idx];
-
-      let s = document.createElement('div');
-
-      s.className =
-        'seat' +
-        (govMode && gov.has(p.name)
-          ? ' gov'
-          : '');
-
+    let n = Math.min(40, 10 + Math.round(r * 2.4));
+    for (let j = 0; j < n && idx < arr.length; j++, idx++) {
+      let p = arr[idx], s = document.createElement('div');
+      s.className = 'seat' + (govMode && gov.has(p.name) ? ' gov' : '');
       s.style.background = p.color;
-
-      s.title =
-        p.full +
-        ' (' +
-        p.name +
-        ')';
-
+      s.title = p.full + ' (' + p.name + ')';
       row.appendChild(s);
-
     }
-
     el.appendChild(row);
-
   }
-
 }
-
-
-/* ==========================================================
-   HJÄLPFUNKTIONER
-   ========================================================== */
-
-function governmentSeats(c) {
-
-  return [...gov].reduce(
-    (a, n) => a + c[n],
-    0
-  );
-
-}
-
-
-function selectedPartyNames() {
-
-  return [...gov]
-    .map(n =>
-      parties.find(p => p.name === n)?.full
-    )
-    .filter(Boolean);
-
-}
-
-
-/* ==========================================================
-   ANALYS AV REGERING
-   ========================================================== */
-
-const cooperation = {
-
-  S: {
-    M: {
-      good: ['försvar', 'lag och ordning'],
-      hard: ['skatter', 'välfärd', 'privatisering']
-    },
-
-    SD: {
-      good: ['lag och ordning'],
-      hard: ['migration', 'värderingsfrågor']
-    },
-
-    V: {
-      good: ['välfärd', 'arbetsmarknad'],
-      hard: ['vinster i välfärden', 'ekonomisk politik']
-    },
-
-    C: {
-      good: ['landsbygd', 'företagande'],
-      hard: ['skatter', 'välfärd', 'arbetsrätt']
-    },
-
-    KD: {
-      good: ['välfärd', 'äldreomsorg'],
-      hard: ['skatter', 'ekonomi']
-    },
-
-    MP: {
-      good: ['klimat', 'välfärd'],
-      hard: ['energi', 'migration']
-    },
-
-    L: {
-      good: ['skola', 'EU'],
-      hard: ['skatter', 'välfärd']
-    }
-  },
-
-  M: {
-    SD: {
-      good: ['lag och ordning', 'migration'],
-      hard: ['klimatpolitik', 'EU-frågor']
-    },
-
-    V: {
-      good: ['vissa välfärdsfrågor'],
-      hard: ['skatter', 'ekonomi', 'privatisering']
-    },
-
-    C: {
-      good: ['företagande', 'landsbygd'],
-      hard: ['migration', 'skatter']
-    },
-
-    KD: {
-      good: ['familj', 'lag och ordning', 'ekonomi'],
-      hard: ['vissa välfärdsfrågor']
-    },
-
-    MP: {
-      good: ['vissa miljöfrågor'],
-      hard: ['energi', 'ekonomi']
-    },
-
-    L: {
-      good: ['skola', 'EU', 'ekonomi'],
-      hard: ['vissa sociala frågor']
-    }
-  },
-
-  SD: {
-    V: {
-      good: ['vissa välfärdsfrågor'],
-      hard: ['migration', 'ekonomi', 'värderingsfrågor']
-    },
-
-    C: {
-      good: [],
-      hard: ['migration', 'landsbygdspolitik', 'värderingsfrågor']
-    },
-
-    KD: {
-      good: ['lag och ordning', 'familj'],
-      hard: ['migration', 'vissa värderingsfrågor']
-    },
-
-    MP: {
-      good: [],
-      hard: ['migration', 'klimat', 'energi']
-    },
-
-    L: {
-      good: ['lag och ordning'],
-      hard: ['migration', 'värderingsfrågor']
-    }
-  },
-
-  V: {
-    C: {
-      good: ['klimat', 'landsbygd'],
-      hard: ['ekonomi', 'välfärdens organisering']
-    },
-
-    KD: {
-      good: ['vård', 'äldreomsorg'],
-      hard: ['ekonomi', 'värderingsfrågor']
-    },
-
-    MP: {
-      good: ['klimat', 'miljö', 'välfärd'],
-      hard: ['ekonomi']
-    },
-
-    L: {
-      good: ['skola', 'vissa liberala rättigheter'],
-      hard: ['ekonomi', 'skatter']
-    }
-  },
-
-  C: {
-    KD: {
-      good: ['landsbygd', 'företagande'],
-      hard: ['migration', 'ekonomi']
-    },
-
-    MP: {
-      good: ['klimat', 'landsbygd'],
-      hard: ['ekonomi']
-    },
-
-    L: {
-      good: ['företagande', 'skola', 'EU'],
-      hard: ['migration', 'ekonomi']
-    }
-  },
-
-  KD: {
-    MP: {
-      good: ['vård', 'äldre'],
-      hard: ['energi', 'klimat']
-    },
-
-    L: {
-      good: ['skola', 'vård'],
-      hard: ['ekonomi']
-    }
-  },
-
-  MP: {
-    L: {
-      good: ['skola', 'EU', 'klimat'],
-      hard: ['ekonomi']
-    }
-  }
-
-};
-
-
-function getCooperation(a, b) {
-
-  if (cooperation[a] && cooperation[a][b]) {
-    return cooperation[a][b];
-  }
-
-  if (cooperation[b] && cooperation[b][a]) {
-    return cooperation[b][a];
-  }
-
-  return {
-    good: ['vissa gemensamma sakfrågor'],
-    hard: ['flera politiska områden']
-  };
-
-}
-
-
-/* ==========================================================
-   RENDERA REGERINGSANALYS
-   ========================================================== */
-
-function renderGovernmentAnalysis(c) {
-
-  const box =
-    document.getElementById('discussionBox');
-
-  const modalBody =
-    document.getElementById('analysisModalBody');
-
-  if (!gov.size) {
-
-    box.innerHTML = '';
-
-    if (modalBody) {
-      modalBody.innerHTML = '';
-    }
-
-    return;
-
-  }
-
-  const names = selectedPartyNames();
-
-  /*
-    Med bara ett parti finns det ännu ingen riktig
-    regeringskoalition att analysera.
-  */
-
-  if (gov.size < 2) {
-
-    box.innerHTML = `
-      <div class="analysisBox">
-        <b>💬 Analys:</b>
-        Lägg till minst ett parti till för att analysera
-        hur regeringen skulle kunna samarbeta.
-      </div>
-    `;
-
-    return;
-
-  }
-
-  let good = [];
-  let hard = [];
-
-  const selected = [...gov];
-
-  for (
-    let i = 0;
-    i < selected.length;
-    i++
-  ) {
-
-    for (
-      let j = i + 1;
-      j < selected.length;
-      j++
-    ) {
-
-      const result =
-        getCooperation(
-          selected[i],
-          selected[j]
-        );
-
-      good.push(
-        ...result.good
-      );
-
-      hard.push(
-        ...result.hard
-      );
-
-    }
-
-  }
-
-  good =
-    [...new Set(good)]
-      .filter(Boolean);
-
-  hard =
-    [...new Set(hard)]
-      .filter(Boolean);
-
-  let difficulty =
-    'lättare';
-
-  if (hard.length >= 5) {
-
-    difficulty =
-      'ganska svårt';
-
-  } else if (hard.length >= 3) {
-
-    difficulty =
-      'utmanande';
-
-  }
-
-  const analysisHTML = `
-
-    <div class="analysisBox
-      ${hard.length >= 5
-        ? 'analysisWarn'
-        : 'analysisGood'}">
-
-      <h3 id="analysisModalTitle">
-        🔎 Analys av ert regeringsval
-      </h3>
-
-      <p>
-        <b>Er regering:</b>
-        ${names.join(' + ')}
-      </p>
-
-      <p>
-        <b>Hur kan samarbetet fungera?</b>
-        Den här regeringen skulle sannolikt kunna hitta
-        gemensamma lösningar inom:
-        <b>
-          ${good.length
-            ? good.join(', ')
-            : 'vissa gemensamma frågor'}
-        </b>.
-      </p>
-
-      <p>
-        <b>Var kan det bli konflikter?</b>
-        Partierna kan behöva kompromissa särskilt om:
-        <b>
-          ${hard.length
-            ? hard.join(', ')
-            : 'ekonomi och prioriteringar'}
-        </b>.
-      </p>
-
-      <p>
-        <b>Sammanfattning:</b>
-        Med just den här sammansättningen skulle samarbetet
-        kunna vara <b>${difficulty}</b>.
-        För att regeringen ska hålla ihop behöver partierna
-        komma överens om vilka frågor de ska prioritera.
-      </p>
-
-      <p style="margin-bottom:0;">
-        💡 <b>Tänk:</b>
-        Ett parti behöver inte få igenom hela sin politik.
-        Regeringspartier måste ofta kompromissa för att
-        kunna styra tillsammans.
-      </p>
-
-    </div>
-
-  `;
-
-  /*
-    Analysen visas som popup i stället för i högerspalten.
-  */
-
-  box.innerHTML = '';
-
-  if (modalBody) {
-
-    modalBody.innerHTML = analysisHTML;
-
-    const modal =
-      document.getElementById('analysisModal');
-
-    if (modal) {
-      modal.classList.remove('hidden');
-    }
-
-  }
-
-}
-
-
-/* ==========================================================
-   STÄNG ANALYSPopup
-   ========================================================== */
-
-function closeAnalysisModal() {
-
-  const modal =
-    document.getElementById('analysisModal');
-
-  if (modal) {
-    modal.classList.add('hidden');
-  }
-
-}
-
-
-/* ==========================================================
-   RENDER
-   ========================================================== */
 
 function render() {
-
   let c = counts();
+  let g = [...gov].reduce((a, n) => a + c[n], 0);
 
-  let g = governmentSeats(c);
+  document.getElementById('gSeats').textContent = g;
+  document.getElementById('oSeats').textContent = 349 - g;
+  
+  let fill = document.getElementById('fill');
+  fill.style.width = (g / 349 * 100) + '%';
+  fill.style.background = g >= 175 ? 'var(--success)' : 'var(--accent)';
 
-  document.getElementById('gSeats')
-    .textContent = g;
+  let st = document.getElementById('status');
+  st.className = 'status ' + (g >= 175 ? 'ok' : 'no');
+  st.textContent = g >= 175 ? '✓ Majoritet – ' + g + ' mandat' : '✕ Ingen majoritet – ' + (175 - g) + ' mandat saknas';
 
-  document.getElementById('oSeats')
-    .textContent = 349 - g;
+  renderMap(document.getElementById('map'), c, true);
 
-  let fill =
-    document.getElementById('fill');
+  document.getElementById('legend').innerHTML = parties.filter(p => c[p.name]).map(p => 
+    `<span style="background:${p.color}; color:${['KD','M','L'].includes(p.name)?'white':'black'}"><b>${p.name}</b> ${c[p.name]}</span>`
+  ).join('');
 
-  fill.style.width =
-    (g / 349 * 100) + '%';
+  const eligibleParties = parties.filter(p => p.pct >= 4 && c[p.name] > 0);
+  // Partier under 4 %-spärren visas inte som möjliga regeringspartier.
+  document.getElementById('coalitions').innerHTML = eligibleParties.length ? eligibleParties.map(p => 
+    `<div class="coal ${gov.has(p.name) ? 'active' : ''}" onclick="toggle('${p.name}')">
+      <span><i class="dot" style="background:${p.color}"></i><b>${p.name}</b> ${p.full}</span>
+      <b>${c[p.name]}</b>
+    </div>`
+  ).join('') : '<p class="small">Inga partier har klarat 4 %-spärren ännu.</p>';
 
-  fill.style.background =
-    g >= 175
-      ? 'var(--success)'
-      : 'var(--accent)';
-
-  let st =
-    document.getElementById('status');
-
-  st.className =
-    'status ' +
-    (g >= 175 ? 'ok' : 'no');
-
-  st.textContent =
-    g >= 175
-      ? '✓ Majoritet – ' + g + ' mandat'
-      : '✕ Ingen majoritet – ' +
-        (175 - g) +
-        ' mandat saknas';
-
-  renderMap(
-    document.getElementById('map'),
-    c,
-    true
-  );
-
-
-  document.getElementById('legend').innerHTML =
-    parties
-      .filter(p => c[p.name])
-      .map(p =>
-
-        `<span
-          style="
-            background:${p.color};
-            color:${['KD','M','L'].includes(p.name)
-              ? 'white'
-              : 'black'
-          }">
-
-          <b>${p.name}</b>
-          ${c[p.name]}
-
-        </span>`
-
-      ).join('');
-
-
-  document.getElementById('coalitions').innerHTML =
-    parties.map(p =>
-
-      `<div
-        class="coal ${gov.has(p.name) ? 'active' : ''}"
-        onclick="toggle('${p.name}')">
-
-        <span>
-
-          <i
-            class="dot"
-            style="background:${p.color}">
-          </i>
-
-          <b>${p.name}</b>
-          ${p.full}
-
-        </span>
-
-        <b>${c[p.name]}</b>
-
-      </div>`
-
-    ).join('');
-
-
-  document.getElementById('govText').innerHTML = `
-
-    <p>
-      <b>Valda partier:</b>
-      ${gov.size
-        ? [...gov].join(' + ')
-        : 'inga'}
-    </p>
-
-    <p>
-      <b>${g} mandat</b> av 349.
-    </p>
-
-    <p class="small">
-      ${
-        g >= 175
-          ? 'Regeringen har majoritet.'
-          : 'Regeringen behöver fler mandat.'
-      }
-    </p>
-
-  `;
+  document.getElementById('govText').innerHTML = `<p><b>Valda partier:</b> ${gov.size ? [...gov].join(' + ') : 'inga'}</p><p><b>${g} mandat</b> av 349.</p>`;
 
   renderMissions(c);
-
-  renderGovernmentAnalysis(c);
-
-  renderTeacher(c);
-
+  renderTeacher(c, false);
 }
 
-
-/* ==========================================================
-   LÄRARLÄGE
-   ========================================================== */
-
-function renderTeacher(c) {
-
-  if (
-    !document.activeElement ||
-    !document.activeElement.closest('#inputs')
-  ) {
-
-    document.getElementById('inputs').innerHTML =
-      parties.map((p, i) =>
-
-        `<div class="party">
-
-          <div
-            class="swatch"
-            style="background:${p.color}">
-          </div>
-
-          <label>
-            <b>${p.name}</b>
-          </label>
-
-          <input
-            type="number"
-            min="0"
-            max="100"
-            step="0.1"
-            value="${p.pct}"
-            oninput="
-              parties[${i}].pct=+this.value;
-              save();
-              render();
-            ">
-
-        </div>`
-
-      ).join('');
-
+function renderTeacher(c, rebuildInputs = false) {
+  if (rebuildInputs) {
+    document.getElementById('inputs').innerHTML = parties.map((p,i) => {
+      const defaultVotes = Math.round((p.pct/100) * 1000);
+      p.votes = Number.isFinite(p.votes) ? p.votes : defaultVotes;
+      return `<div class="party">
+        <div class="swatch" style="background:${p.color}"></div>
+        <label><b>${p.name}</b><br><span class="small">${p.full}</span></label>
+        <input id="votes-${p.name}" type="number" min="0" step="1" value="${p.votes}" oninput="parties[${i}].votes=parseInt(this.value,10)||0; updateVoteTotalOnly()">
+      </div>`;
+    }).join('');
   }
-
-  let t =
-    parties.reduce(
-      (a, p) => a + p.pct,
-      0
-    );
-
-  document.getElementById('total').innerHTML =
-    'Summa: <b>' +
-    t.toFixed(1) +
-    ' %</b>';
-
-
-  document.getElementById('teacherStats').innerHTML = `
-
-    <div class="stats">
-
-      <div class="stat">
-        <b>349</b>
-        mandat
-      </div>
-
-      <div class="stat">
-        <b>
-          ${parties.filter(
-            p => c[p.name] > 0
-          ).length}
-        </b>
-        över 4%
-      </div>
-
-      <div class="stat">
-
-        <b>
-          ${
-            [...parties]
-              .sort(
-                (a,b) =>
-                  c[b.name] -
-                  c[a.name]
-              )[0].name
-          }
-        </b>
-
-        störst
-
-      </div>
-
-    </div>
-
-  `;
-
-
-  renderMap(
-    document.getElementById('teacherMap'),
-    c,
-    false
-  );
-
-
-  document.getElementById('teacherLegend').innerHTML =
-    parties
-      .filter(p => c[p.name])
-      .map(p =>
-
-        `<span
-          style="
-            background:${p.color};
-            color:${['KD','M','L'].includes(p.name)
-              ? 'white'
-              : 'black'
-          }">
-
-          <b>${p.name}</b>
-          ${c[p.name]}
-
-        </span>`
-
-      ).join('');
-
+  const totalVotes = Number(document.getElementById('totalVotes')?.value) || parties.reduce((a,p)=>a+(p.votes||0),0);
+  const voteSum = parties.reduce((a,p)=>a+(p.votes||0),0);
+  document.getElementById('total').innerHTML = `Röster: <b>${voteSum.toLocaleString('sv-SE')}</b> av ${totalVotes.toLocaleString('sv-SE')} · ${totalVotes ? (voteSum/totalVotes*100).toFixed(1) : '0.0'} % inmatat`;
+  document.getElementById('teacherStats').innerHTML = `<div class="stats"><div class="stat"><b>349</b>mandat</div><div class="stat"><b>${parties.filter(p=>p.pct>=4).length}</b>över 4 %</div><div class="stat"><b>${[...parties].sort((a,b)=>c[b.name]-c[a.name])[0].name}</b>störst</div></div>`;
+  renderMap(document.getElementById('teacherMap'),c,false);
+  document.getElementById('teacherLegend').innerHTML = parties.map(p => {
+    const eligible=p.pct>=4;
+    return `<span style="background:${p.color};color:${['KD','M','L'].includes(p.name)?'white':'black'}"><b>${p.name}</b> ${p.pct.toFixed(1)} % · ${eligible?c[p.name]:0} mandat ${eligible?'':'· under 4 %'}</span>`;
+  }).join('');
 }
 
+function updateVoteTotalOnly() {
+  const totalVotes = Number(document.getElementById('totalVotes')?.value)||0;
+  const voteSum = parties.reduce((a,p)=>a+(p.votes||0),0);
+  document.getElementById('total').innerHTML = `Röster: <b>${voteSum.toLocaleString('sv-SE')}</b> av ${totalVotes.toLocaleString('sv-SE')} · ${totalVotes ? (voteSum/totalVotes*100).toFixed(1) : '0.0'} % inmatat <span class="small">(klicka Uppdatera förhandsvisning)</span>`;
+}
 
-/* ==========================================================
-   REGERING
-   ========================================================== */
-
-function toggle(n) {
-
-  if (gov.has(n)) {
-
-    gov.delete(n);
-
-  } else {
-
-    gov.add(n);
-
-  }
-
+function updateTeacherPreview() {
+  const totalVotes=Number(document.getElementById('totalVotes').value)||0;
+  const voteSum=parties.reduce((a,p)=>a+(p.votes||0),0);
+  if(totalVotes<=0){document.getElementById('total').innerHTML='<span style="color:var(--danger)"><b>Ange totalt antal giltiga röster.</b></span>';return;}
+  if(voteSum>totalVotes){document.getElementById('total').innerHTML='<span style="color:var(--danger)"><b>De enskilda partiernas röster kan inte vara fler än det totala antalet röster.</b></span>';return;}
+  parties.forEach(p=>p.pct=(p.votes||0)/totalVotes*100);
+  save();
+  renderTeacher(counts(),false);
   render();
-
 }
 
-
-function clearGov() {
-
-  gov.clear();
-
-  closeAnalysisModal();
-
-  render();
-
-}
+function updateTeacherTotalOnly(){ updateVoteTotalOnly(); }
 
 
-/* ==========================================================
-   NORMALISERA
-   ========================================================== */
-
+function toggle(n) { gov.has(n) ? gov.delete(n) : gov.add(n); render(); }
+function clearGov() { gov.clear(); render(); }
 function normalize() {
-
-  let t =
-    parties.reduce(
-      (a, p) => a + p.pct,
-      0
-    );
-
-  if (!t) return;
-
-  parties.forEach(
-    p =>
-      p.pct =
-        +(p.pct / t * 100).toFixed(1)
-  );
-
-  save();
-
-  render();
-
+  const totalVotes=parties.reduce((a,p)=>a+(p.votes||0),0);
+  if(!totalVotes) return;
+  const input=document.getElementById('totalVotes');
+  if(input) input.value=totalVotes;
+  parties.forEach(p=>p.pct=(p.votes||0)/totalVotes*100);
+  save(); render(); renderTeacher(counts(),false);
 }
 
-
-/* ==========================================================
-   SPARA LÄRARRESULTAT
-   ========================================================== */
-
-function save() {
-
-  localStorage.setItem(
-    'schoolGov',
-    JSON.stringify(
-      parties.map(p => p.pct)
-    )
-  );
-
-}
-
-
-/* ==========================================================
-   ÅTERSTÄLL
-   ========================================================== */
-
+function save() { localStorage.setItem('schoolGovData', JSON.stringify({totalVotes:Number(document.getElementById('totalVotes')?.value)||1000,votes:parties.map(p=>p.votes||0)})); }
 function resetAll() {
-
   gov.clear();
-
-  closeAnalysisModal();
-
-  missionIndex = 0;
-
-  localStorage.setItem(
-    'schoolGovMission',
-    0
-  );
-
-  [
-    30,
-    20,
-    20,
-    7,
-    6,
-    5,
-    5,
-    3
-  ].forEach(
-    (v, i) =>
-      parties[i].pct = v
-  );
-
-  save();
-
-  render();
-
+  missionIndex=0;
+  missionSuccessShown=false;
+  const defaults=[300,200,200,70,60,50,50,30];
+  defaults.forEach((v,i)=>{parties[i].votes=v;parties[i].pct=v/1000*100;});
+  const input=document.getElementById('totalVotes'); if(input) input.value=1000;
+  save(); renderTeacher(counts(),true); render();
 }
 
-
-/* ==========================================================
-   UPPDRAG
-   ========================================================== */
-
-/*
-  ALLA uppdrag kräver minst 175 mandat.
-
-  Uppdragen är utformade så att eleverna måste fundera
-  både på mandat och på vilka partier som kan samarbeta.
-*/
-
-const missions = [
-
-  {
-    text:
-      'Bilda en regering med minst 175 mandat.',
-
-    check:
-      (g) => g >= 175
-  },
-
-  {
-    text:
-      'Bilda en majoritetsregering där Socialdemokraterna ingår.',
-
-    check:
-      (g) =>
-        g >= 175 &&
-        gov.has('S')
-  },
-
-  {
-    text:
-      'Bilda en majoritetsregering där Kristdemokraterna ingår.',
-
-    check:
-      (g) =>
-        g >= 175 &&
-        gov.has('KD')
-  },
-
-  {
-    text:
-      'Bilda en majoritetsregering utan Sverigedemokraterna.',
-
-    check:
-      (g) =>
-        g >= 175 &&
-        !gov.has('SD')
-  },
-
-  {
-    text:
-      'Bilda en majoritetsregering utan Socialdemokraterna.',
-
-    check:
-      (g) =>
-        g >= 175 &&
-        !gov.has('S')
-  },
-
-  {
-    text:
-      'Bilda en majoritetsregering med exakt tre partier.',
-
-    check:
-      (g) =>
-        g >= 175 &&
-        gov.size === 3
-  },
-
-  {
-    text:
-      'Bilda en majoritetsregering med exakt fyra partier.',
-
-    check:
-      (g) =>
-        g >= 175 &&
-        gov.size === 4
-  },
-
-  {
-    text:
-      'Bilda en majoritetsregering där både C och V ingår.',
-
-    check:
-      (g) =>
-        g >= 175 &&
-        gov.has('C') &&
-        gov.has('V')
-  },
-
-  {
-    text:
-      'Bilda en majoritetsregering där både M och S ingår.',
-
-    check:
-      (g) =>
-        g >= 175 &&
-        gov.has('M') &&
-        gov.has('S')
-  },
-
-  {
-    text:
-      'Bilda en majoritetsregering där M, KD och L ingår.',
-
-    check:
-      (g) =>
-        g >= 175 &&
-        gov.has('M') &&
-        gov.has('KD') &&
-        gov.has('L')
-  },
-
-  {
-    text:
-      'Bilda en majoritetsregering med så få partier som möjligt.',
-
-    check:
-      (g) => {
-
-        if (g < 175) {
-          return false;
-        }
-
-        let min = 99;
-
-        for (
-          let mask = 1;
-          mask < (1 << parties.length);
-          mask++
-        ) {
-
-          let seats = 0;
-          let count = 0;
-
-          parties.forEach((p, i) => {
-
-            if (mask & (1 << i)) {
-
-              seats +=
-                counts()[p.name];
-
-              count++;
-
-            }
-
-          });
-
-          if (seats >= 175) {
-            min = Math.min(min, count);
-          }
-
-        }
-
-        return gov.size === min;
-
-      }
-  },
-
-  {
-    text:
-      'Bilda en majoritetsregering med det största partiet, men utan det näst största.',
-
-    check:
-      (g) => {
-
-        if (g < 175) {
-          return false;
-        }
-
-        let c = counts();
-
-        let sorted =
-          [...parties]
-            .sort(
-              (a,b) =>
-                c[b.name] -
-                c[a.name]
-            );
-
-        return (
-          gov.has(sorted[0].name) &&
-          !gov.has(sorted[1].name)
-        );
-
-      }
-  }
-
-];
-
-
-let missionIndex = 0;
-
-
-/* ==========================================================
-   UPPDRAGSKONTROLL
-   ========================================================== */
-
-function missionOK(c) {
-
-  if (
-    missionIndex < 0 ||
-    missionIndex >= missions.length
-  ) {
-
-    return false;
-
-  }
-
-  let g =
-    governmentSeats(c);
-
-  return missions[
-    missionIndex
-  ].check(g);
-
+function getEligibleNames(c) {
+  return parties.filter(p => p.pct >= 4 && (c[p.name] || 0) > 0).map(p => p.name);
 }
 
-
-/* ==========================================================
-   NÄSTA UPPDRAG
-   ========================================================== */
-
-function nextMission() {
-
-  const c = counts();
-
-  /*
-    Kontrollera alltid uppdraget precis innan vi går vidare.
-    Detta gör knappen stabil även efter att regeringen har
-    ändrats eller när mandatfördelningen har räknats om.
-  */
-
-  if (!missionOK(c)) {
-
-    render();
-
-    return;
-
-  }
-
-  if (
-    missionIndex >=
-    missions.length - 1
-  ) {
-
-    return;
-
-  }
-
-  missionIndex++;
-
-  localStorage.setItem(
-    'schoolGovMission',
-    missionIndex
-  );
-
-  gov.clear();
-
-  closeAnalysisModal();
-
-  render();
-
+function canReachMajority(names, c) {
+  return names.reduce((sum, n) => sum + (c[n] || 0), 0) >= 175;
 }
 
+function buildMissions(c) {
+  const eligible = getEligibleNames(c);
+  const sorted = [...eligible].sort((a,b) => (c[b]||0) - (c[a]||0));
+  const result = [];
+  const add = (text, check, key) => {
+    if (!result.some(m => m.key === key)) result.push({text, check, key});
+  };
 
-/* ==========================================================
-   RENDERA UPPDRAG
-   ========================================================== */
+  // 1. Ett grunduppdrag som alltid utgår från en faktisk majoritet.
+  add('Bilda en majoritetsregering med minst 175 mandat.', g => g >= 175, 'majority');
 
-function renderMissions(c) {
-
-  let ok =
-    missionOK(c);
-
-  let completed =
-    missionIndex;
-
-  let progress =
-    (completed /
-      missions.length) *
-    100;
-
-  document.getElementById(
-    'missionBox'
-  ).innerHTML = `
-
-    <b>
-      🎯 UPPDRAG
-      ${missionIndex + 1}
-      AV
-      ${missions.length}
-    </b>
-
-    <div class="missionProgress">
-
-      <div
-        class="missionProgressFill"
-        style="width:${progress}%">
-      </div>
-
-    </div>
-
-    <h3 style="margin:8px 0;">
-      ${missions[missionIndex].text}
-    </h3>
-
-    <p class="small"
-       style="margin:0 0 10px;">
-
-      Vald regering:
-
-      ${
-        gov.size
-          ? [...gov].join(' + ')
-          : 'ingen'
-      }
-
-    </p>
-
-    ${
-      ok
-
-      ? `
-
-        <div
-          style="
-            background:#dcfce7;
-            color:#15803d;
-            padding:12px;
-            border-radius:6px;
-            font-weight:600;">
-
-          🎉 Uppdraget klarat!
-
-          ${
-            missionIndex <
-            missions.length - 1
-
-            ? `
-
-              <br>
-
-              <button
-                class="dark"
-                style="margin-top:8px;"
-                onclick="nextMission()">
-
-                Nästa uppdrag →
-
-              </button>
-
-            `
-
-            : `
-
-              <br><br>
-              🏆 Alla uppdrag är klara!
-
-            `
-          }
-
-        </div>
-
-      `
-
-      : ''
-
+  // 2. Uppdrag som bygger på partier som faktiskt klarat 4 %-spärren.
+  // Lägg bara till ett specifikt parti om det går att bilda en majoritet där partiet ingår.
+  for (const name of sorted) {
+    if (result.length >= 3) break;
+    if (canReachMajority(eligible, c)) {
+      add(`Bilda en majoritetsregering där ${name} ingår.`,
+          g => g >= 175 && gov.has(name), `include-${name}`);
     }
+  }
 
-  `;
+  // 3. Exakt två partier – endast om minst ett sådant par faktiskt kan nå 175.
+  const pairs = [];
+  for (let i=0;i<eligible.length;i++) for (let j=i+1;j<eligible.length;j++) {
+    const a=eligible[i], b=eligible[j];
+    if ((c[a]||0)+(c[b]||0) >= 175) pairs.push([a,b]);
+  }
+  if (pairs.length) {
+    const [a,b]=pairs[0];
+    add(`Bilda en majoritetsregering med exakt två partier: ${a} och ${b}.`,
+        g => g >= 175 && gov.size === 2 && gov.has(a) && gov.has(b), `pair-${a}-${b}`);
+  }
 
+  // 4. Exakt tre partier – endast om det är möjligt med de partier som finns kvar.
+  let triple=null;
+  for (let i=0;i<eligible.length && !triple;i++) for (let j=i+1;j<eligible.length && !triple;j++) for (let k=j+1;k<eligible.length;k++) {
+    const combo=[eligible[i],eligible[j],eligible[k]];
+    if (canReachMajority(combo,c)) { triple=combo; break; }
+  }
+  if (triple) {
+    add(`Bilda en majoritetsregering med exakt tre partier: ${triple.join(' + ')}.`,
+        g => g >= 175 && gov.size === 3 && triple.every(n => gov.has(n)), `triple-${triple.join('-')}`);
+  }
 
-  document.getElementById(
-    'missionList'
-  ).innerHTML =
+  // 5. Minsta möjliga antal regeringspartier.
+  if (eligible.length) {
+    add('Bilda en majoritetsregering med så få partier som möjligt.',
+        g => g >= 175 && gov.size === minimumGovernmentSize(c), 'minimum');
+  }
 
-    missions
-      .map(
-        (m, i) =>
+  // 6. Största partiet, utan att nämna ett parti som ligger under spärren.
+  if (sorted.length >= 2) {
+    const largest=sorted[0], second=sorted[1];
+    if (canReachMajority(eligible,c)) {
+      add(`Bilda en majoritetsregering med det största partiet (${largest}), men utan det näst största (${second}).`,
+          g => g >= 175 && gov.has(largest) && !gov.has(second), `largest-not-second-${largest}-${second}`);
+    }
+  }
 
-          `<p style="margin:4px 0;">
+  // 7. Om någon enskild behörig partikonstellation faktiskt kan ge 175 mandat: ett enpartiuppdrag.
+  const solo=sorted.find(n => (c[n]||0) >= 175);
+  if (solo) {
+    add(`Bilda en majoritetsregering med endast ${solo}.`,
+        g => g >= 175 && gov.size === 1 && gov.has(solo), `solo-${solo}`);
+  }
 
-            ${
-              i < missionIndex
-                ? '✅'
-                : i === missionIndex
-                  ? '🎯'
-                  : '🔒'
-            }
+  // 8. Om tvåpartikoalitioner finns: ett konkret samarbetsuppdrag med ett annat möjligt par.
+  if (pairs.length > 1) {
+    const [a,b]=pairs[1];
+    add(`Bilda en majoritetsregering med ${a} och ${b}, och inga andra partier.`,
+        g => g >= 175 && gov.size === 2 && gov.has(a) && gov.has(b), `pair2-${a}-${b}`);
+  }
 
-            ${m.text}
-
-          </p>`
-
-      ).join('');
-
-
-  document.getElementById(
-    'teacherMissions'
-  ).innerHTML =
-
-    missions
-      .map(
-        (m, i) =>
-
-          `<p style="margin:4px 0;">
-
-            <b>${i + 1}.</b>
-            ${m.text}
-
-          </p>`
-
-      ).join('');
-
+  // Om resultatet ger mycket få mandat räcker ändå ett enda uppdrag – och det är alltid möjligt
+  // att försöka bilda majoritet med alla behöriga partier.
+  return result;
 }
 
+let missions = [];
+let currentSeats = {};
+let missionIndex = 0;
+let missionSuccessShown = false;
 
-/* ==========================================================
-   LÄRARLÄGE – ÖPPNA
-   ========================================================== */
+function minimumGovernmentSize(c){
+  const available=getEligibleNames(c);
+  let min=Infinity;
+  for(let mask=1;mask<(1<<available.length);mask++){
+    let seats=0,n=0;
+    for(let i=0;i<available.length;i++){
+      if(mask&(1<<i)){ seats+=c[available[i]]||0; n++; }
+    }
+    if(seats>=175) min=Math.min(min,n);
+  }
+  return Number.isFinite(min) ? min : available.length;
+}
+
+function refreshMissions(c){
+  const oldKey = missions[missionIndex]?.key;
+  missions = buildMissions(c);
+  if(!missions.length){ missionIndex=0; gov.clear(); return; }
+  const same=missions.findIndex(m=>m.key===oldKey);
+  if(same>=0) missionIndex=same;
+  else missionIndex=Math.min(missionIndex, missions.length-1);
+  const eligible=new Set(getEligibleNames(c));
+  [...gov].forEach(n=>{ if(!eligible.has(n)) gov.delete(n); });
+}
+
+function missionOK(c){
+  currentSeats=c;
+  if(!missions.length || missionIndex>=missions.length) return false;
+  const g=[...gov].reduce((a,n)=>a+(c[n]||0),0);
+  return missions[missionIndex].check(g);
+}
+
+function nextMission(){
+  if(missionIndex<missions.length-1){
+    missionIndex++;
+    gov.clear();
+    missionSuccessShown=false;
+    closeSuccessModal();
+    render();
+  }
+}
+
+function renderMissions(c){
+  refreshMissions(c);
+  if(!missions.length){
+    document.getElementById('missionBox').innerHTML='<b>🎯 Inga uppdrag kan skapas ännu.</b><p class="small">Minst ett parti måste klara 4 %-spärren.</p>';
+    document.getElementById('missionList').innerHTML='';
+    document.getElementById('teacherMissions').innerHTML='';
+    return;
+  }
+  const ok=missionOK(c);
+  const progress=(missionIndex/missions.length)*100;
+  document.getElementById('missionBox').innerHTML=`
+    <b>🎯 UPPDRAG ${missionIndex+1} AV ${missions.length}</b>
+    <div class="missionProgress"><div class="missionProgressFill" style="width:${progress}%"></div></div>
+    <h3 style="margin:8px 0;">${missions[missionIndex].text}</h3>
+    <p class="small">Vald regering: ${gov.size?[...gov].join(' + '):'ingen'}</p>
+    ${ok?`<div style="background:#dcfce7;color:#15803d;padding:10px;border-radius:6px;font-weight:600">
+      🎉 Uppdraget är klart!
+      ${missionIndex<missions.length-1?`<br><button class="dark" style="margin-top:8px;" onclick="nextMission()">Nästa uppdrag →</button>`:`<br><br>🏆 Alla uppdrag är klara!`}
+    </div>`:''}`;
+  document.getElementById('missionList').innerHTML=missions.map((m,i)=>`<p style="margin:4px 0;">${i<missionIndex?'✅':i===missionIndex?'🎯':'🔒'} ${m.text}</p>`).join('');
+  document.getElementById('teacherMissions').innerHTML=missions.map((m,i)=>`<p style="margin:4px 0;"><b>${i+1}.</b> ${m.text}</p>`).join('');
+  if(ok&&!missionSuccessShown){
+    missionSuccessShown=true;
+    setTimeout(()=>showSuccessModal(c),80);
+  }
+}
+
+function coalitionAnalysis(c){
+  const names=[...gov];
+  const full=names.map(n=>parties.find(p=>p.name===n)?.full||n);
+  const seats=names.reduce((a,n)=>a+(c[n]||0),0);
+  const pairs={
+    'M|KD':['skatter, företagande och arbetslinjen','försvar, lag och ordning, vård och välfärdens kärna','storleken på skattesänkningar, klimatpolitikens detaljer och vissa familje- och välfärdsfrågor'],
+    'M|L':['skatter, företagande, skola och EU','marknadsekonomi, utbildning och individens frihet','skattenivåer, arbetsmarknad och hur omfattande välfärdsstaten ska vara'],
+    'M|C':['företagande, lägre skatter och arbetslinjen','ekonomiska reformer och delar av den liberala politiken','migration, klimat, landsbygd och synen på statlig styrning'],
+    'M|SD':['lag och ordning, försvar och stramare migration','trygghetspolitik och delar av välfärden','migrationens omfattning, klimatpolitik och vissa ekonomiska/liberala frågor'],
+    'S|V':['välfärd, arbetsvillkor och ekonomisk omfördelning','starkare offentlig välfärd och arbetsmarknad','skattenivåer, företagande och hur långt staten ska ingripa i ekonomin'],
+    'S|MP':['klimat, välfärd och sociala frågor','grön omställning och offentlig välfärd','energi, tillväxt och hur snabbt klimatpolitiken ska genomföras'],
+    'S|C':['välfärd, jobb och vissa sociala reformer','arbetsmarknad och delar av klimatpolitiken','skatter, företagande och marknadslösningar'],
+    'S|L':['skola, välfärd och vissa sociala reformer','utbildning, EU och internationellt samarbete','skatter, arbetsmarknad och hur välfärden ska organiseras'],
+    'S|KD':['välfärd, sjukvård och äldreomsorg','välfärdens kärna och trygghetsfrågor','skatter, migration och synen på valfrihet och välfärdens organisering'],
+    'S|SD':['vissa välfärds- och trygghetsfrågor','välfärdens kärna och delar av kriminalpolitiken','migration, klimat och ekonomisk politik'],
+    'C|MP':['klimat, miljö och vissa liberala reformer','grön omställning och delar av företagspolitiken','energi, landsbygdspolitik och skattenivåer'],
+    'C|L':['företagande, utbildning, EU och liberal politik','skola och ekonomiska reformer','klimat, landsbygd, migration och välfärdens organisering'],
+    'C|KD':['familj, företagande och vissa välfärdsfrågor','valfrihet och delar av ekonomin','klimat, migration och synen på statens roll'],
+    'C|V':['vissa miljö-, välfärds- och arbetsmarknadsfrågor','klimat och offentlig välfärd','skatter, företagande och arbetsmarknad'],
+    'V|MP':['klimat, välfärd och sociala frågor','offentlig välfärd och grön omställning','ekonomisk politik och företagande'],
+    'V|KD':['välfärd, sjukvård och äldreomsorg','satsningar på välfärdens kärna','skatter, migration och familjepolitik'],
+    'V|L':['skola och vissa sociala frågor','utbildning och delar av välfärdspolitiken','skatter, arbetsmarknad och ekonomisk politik'],
+    'V|SD':['vissa välfärdsfrågor och trygghet','delar av välfärdens kärna','migration, ekonomisk politik och klimat'],
+    'KD|SD':['lag och ordning, trygghet och delar av migrationspolitiken','trygghetsfrågor och delar av välfärden','klimat, ekonomi och vissa sociala frågor'],
+    'KD|MP':['vård, äldreomsorg och vissa välfärdsfrågor','välfärdens kärna','energi, klimat och familjepolitik'],
+    'KD|L':['skola, vård och vissa borgerliga reformer','välfärd, utbildning och trygghet','skatter, migration och energipolitik'],
+    'MP|L':['skola, EU och delar av klimatpolitiken','utbildning och internationellt samarbete','energi, skatter och hur klimatpolitiken ska genomföras']
+  };
+  const own={
+    'S':['välfärd och offentlig service','arbetsmarknad och trygghetssystem','skattenivåer och relationen mellan offentlig sektor och företag'],
+    'M':['företagande och lägre skatt på arbete','lag och ordning','storleken på offentlig sektor och välfärdens organisering'],
+    'SD':['migration och integration','lag och ordning','klimatpolitikens omfattning och ekonomiska prioriteringar'],
+    'V':['välfärd och arbetsvillkor','ekonomisk omfördelning','vinster och privata aktörer i välfärden'],
+    'C':['företagande och landsbygd','klimat och grön tillväxt','migration och arbetsmarknad'],
+    'KD':['vård, äldre och familj','trygghet och lag och ordning','skatter och välfärdens finansiering'],
+    'MP':['klimat och miljö','grön omställning','energi och ekonomiska styrmedel'],
+    'L':['skola och utbildning','EU och internationellt samarbete','skatter, arbetsmarknad och liberal reformpolitik']
+  };
+  let agreements=[],conflicts=[];
+  for(let i=0;i<names.length;i++) for(let j=i+1;j<names.length;j++){
+    const key=[names[i],names[j]].sort().join('|');
+    const d=pairs[key];
+    if(d){
+      agreements.push(`${names[i]} + ${names[j]}: ${d[0]}`);
+      conflicts.push(`${names[i]} + ${names[j]}: ${d[2]}`);
+    }
+  }
+  if(names.length===1){
+    const n=names[0];
+    const a=own[n]||['sina viktigaste profilfrågor'];
+    agreements=[`${n} kan driva igenom sin politik utan koalitionsförhandlingar. Exempel: ${a.join(', ')}.`];
+    conflicts=['Den stora utmaningen blir i stället att få stöd för budgeten och andra beslut i riksdagen när regeringen möter partier utanför regeringen.'];
+  }
+  if(names.length>2){
+    agreements.push('En bred regering kan kombinera flera partiers styrkor, men kräver en gemensam regeringsförklaring och tydliga kompromisser.');
+  }
+  if(!agreements.length){
+    agreements=['Partierna behöver framför allt hitta gemensamma nämnare genom konkreta förhandlingar.'];
+  }
+  if(!conflicts.length){
+    conflicts=['Partierna behöver tydliggöra vilka sakfrågor som ska prioriteras och vilka frågor som kan lämnas utanför samarbetet.'];
+  }
+  return {full,seats,agreements:[...new Set(agreements)].slice(0,4),conflicts:[...new Set(conflicts)].slice(0,4),majority:seats>=175};
+}
+
+function showSuccessModal(c){
+  const a=coalitionAnalysis(c);
+  const list=a.full.join(' + ');
+  document.getElementById('successModalContent').innerHTML=`<div class="successBanner">🎉 UPPDRAG KLARAT!<br>${list} får tillsammans ${a.seats} av 349 mandat.</div><h2>🏛️ Analys av din regering</h2><p>${a.majority?'Det här är en majoritetsregering och har därmed minst 175 mandat bakom sig.':'Regeringen saknar majoritet.'}</p><div class="analysisBox"><h3>🤝 Här kan partierna komma överens</h3><ul>${a.agreements.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="analysisBox"><h3>⚠️ Här kan det bli svårt</h3><ul>${a.conflicts.map(x=>`<li>${x}</li>`).join('')}</ul></div><p class="small"><b>Diskussionsfråga:</b> Vilken fråga skulle ni behöva kompromissa mest om för att regeringen skulle hålla ihop?</p>`;
+  document.getElementById('successModal').classList.remove('hidden');
+}
+function closeSuccessModal(){document.getElementById('successModal').classList.add('hidden');}
 
 function openTeacher() {
-
   showPage('teacher');
-
-  document
-    .getElementById('lock')
-    .classList.remove('hidden');
-
-  document
-    .getElementById('teacherContent')
-    .classList.add('hidden');
-
+  document.getElementById('lock').classList.remove('hidden');
+  document.getElementById('teacherContent').classList.add('hidden');
 }
-
-
-/* ==========================================================
-   LÅS UPP LÄRARLÄGE
-   ========================================================== */
 
 function unlock() {
-
-  if (
-    document.getElementById('pin').value ===
-    '4826'
-  ) {
-
-    document
-      .getElementById('lock')
-      .classList.add('hidden');
-
-    document
-      .getElementById('teacherContent')
-      .classList.remove('hidden');
-
-    document
-      .getElementById('pinError')
-      .textContent = '';
-
+  if (document.getElementById('pin').value === '4826') {
+    document.getElementById('lock').classList.add('hidden');
+    document.getElementById('teacherContent').classList.remove('hidden');
+    document.getElementById('pinError').textContent = '';
   } else {
-
-    document
-      .getElementById('pinError')
-      .textContent =
-      'Fel kod.';
-
+    document.getElementById('pinError').textContent = 'Fel kod.';
   }
-
 }
-
-
-/* ==========================================================
-   LÅS LÄRARLÄGE
-   ========================================================== */
 
 function lockTeacher() {
-
-  document
-    .getElementById('teacherContent')
-    .classList.add('hidden');
-
-  document
-    .getElementById('lock')
-    .classList.remove('hidden');
-
-  document
-    .getElementById('pin')
-    .value = '';
-
+  document.getElementById('teacherContent').classList.add('hidden');
+  document.getElementById('lock').classList.remove('hidden');
+  document.getElementById('pin').value = '';
 }
 
-
-/* ==========================================================
-   SIDOR
-   ========================================================== */
-
-function showPage(page) {
-
-  [
-    'student',
-    'facts',
-    'issues',
-    'games',
-    'teacher'
-  ].forEach(
-    id =>
-      document
-        .getElementById(id)
-        .classList.toggle(
-          'hidden',
-          id !== page
-        )
-  );
-
-  document
-    .getElementById('sTab')
-    .className =
-      page === 'student'
-        ? 'dark'
-        : 'light';
-
-  document
-    .getElementById('fTab')
-    .className =
-      page === 'facts'
-        ? 'dark'
-        : 'light';
-
-  document
-    .getElementById('iTab')
-    .className =
-      page === 'issues'
-        ? 'dark'
-        : 'light';
-
-  document
-    .getElementById('gTab')
-    .className =
-      page === 'games'
-        ? 'dark'
-        : 'light';
-
-  document
-    .getElementById('tTab')
-    .className =
-      page === 'teacher'
-        ? 'dark'
-        : 'light';
-
+function showPage(p) {
+  ['student', 'teacher', 'facts', 'positions', 'games'].forEach(x => document.getElementById(x).classList.add('hidden'));
+  document.getElementById(p).classList.remove('hidden');
+  document.getElementById('sTab').className = p === 'student' ? 'dark' : 'light';
+  document.getElementById('tTab').className = p === 'teacher' ? 'dark' : 'light';
+  document.getElementById('fTab').className = p === 'facts' ? 'dark' : 'light';
+  document.getElementById('pTab').className = p === 'positions' ? 'dark' : 'light';
+  document.getElementById('gTab').className = p === 'games' ? 'dark' : 'light';
 }
 
-
-/* ==========================================================
-   FAKTAKORT
-   ========================================================== */
-
-function renderFacts() {
-
-  document.getElementById(
-    'factgrid'
-  ).innerHTML =
-
-    parties.map(p => `
-
-      <div class="factCard">
-
-        <div class="factHeader">
-
-          <img
-            src="${p.logo}"
-            alt="${p.full}"
-            class="factLogoImg"
-            referrerpolicy="no-referrer"
-            loading="eager">
-
-          <h3 class="factTitle">
-            ${p.full}
-          </h3>
-
-        </div>
-
-        <div class="factBody">
-
-          <img
-            src="${p.photo}"
-            alt="${p.leader}"
-            class="leaderImg"
-            referrerpolicy="no-referrer"
-            loading="eager">
-
-          <div class="factText">
-
-            <p>
-              <b>Partiledare:</b>
-              ${p.leader}
-            </p>
-
-            <p>
-              <b>Skolval:</b>
-              ${p.pct} %
-            </p>
-
-            <div class="linkRow">
-
-              <a
-                class="linkButton"
-                href="${p.site}"
-                target="_blank">
-                Partiets hemsida
-              </a>
-
-              <a
-                class="linkButton"
-                href="${p.ne}"
-                target="_blank">
-                NE
-              </a>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    `).join('');
-
-}
-
-
-/* ==========================================================
-   SAKFRÅGOR
-   ========================================================== */
-
-const issues = [
-
-  {
-    title: 'Ekonomi & skatter',
-
-    positions: {
-      S: 'Vill generellt ha högre skatter för höginkomsttagare och prioritera välfärd.',
-      M: 'Vill generellt ha lägre skatter och större fokus på arbete och företagande.',
-      SD: 'Vill sänka vissa skatter och prioritera välfärd, pensionärer och trygghet.',
-      V: 'Vill höja skatter för höginkomsttagare och stora företag för att finansiera välfärd.',
-      C: 'Vill sänka skatter på arbete och företagande.',
-      KD: 'Vill sänka vissa skatter och prioritera familjer, vård och äldre.',
-      MP: 'Vill använda skatter för att styra mot klimatmål och minska utsläpp.',
-      L: 'Vill sänka skatten på arbete och utbildning men finansiera välfärden.'
-    }
-  },
-
-  {
-    title: 'Skola',
-
-    positions: {
-      S: 'Vill stärka den offentliga skolan och öka resurserna.',
-      M: 'Vill ha tydliga kunskapskrav och möjlighet till olika skolalternativ.',
-      SD: 'Vill stärka kunskapsresultaten och minska skillnader mellan skolor.',
-      V: 'Vill stärka den kommunala skolan och minska marknadens roll.',
-      C: 'Vill ge skolor större frihet och stärka landsbygdens skolor.',
-      KD: 'Vill prioritera kunskap, trygghet och ordning i skolan.',
-      MP: 'Vill stärka elevhälsa och arbeta med hållbar utveckling.',
-      L: 'Vill prioritera kunskap, lärarnas status och tydliga kunskapskrav.'
-    }
-  },
-
-  {
-    title: 'Migration',
-
-    positions: {
-      S: 'Vill ha en reglerad migration och betonar integration.',
-      M: 'Vill ha en betydligt stramare migrationspolitik.',
-      SD: 'Vill ha mycket kraftigt minskad migration.',
-      V: 'Vill ha en mer generös migrationspolitik och värna asylrätten.',
-      C: 'Vill ha en human migrationspolitik och betonar integration.',
-      KD: 'Vill ha en stram migrationspolitik men värna asylrätten.',
-      MP: 'Vill ha en mer generös migrationspolitik och starkare asylrätt.',
-      L: 'Vill ha en reglerad migration kombinerat med stark integration.'
-    }
-  },
-
-  {
-    title: 'Klimat & miljö',
-
-    positions: {
-      S: 'Vill minska utsläppen genom investeringar och styrmedel.',
-      M: 'Vill främst använda teknik, kärnkraft och ekonomiska styrmedel.',
-      SD: 'Vill prioritera billig energi och är mer försiktiga med klimatstyrmedel.',
-      V: 'Vill ha kraftfull klimatpolitik och stora gröna investeringar.',
-      C: 'Vill ha ambitiös klimatpolitik med fokus på företag och landsbygd.',
-      KD: 'Vill minska utsläppen men betonar teknik och kärnkraft.',
-      MP: 'Har klimat och miljö som en av sina viktigaste frågor.',
-      L: 'Vill ha ambitiös klimatpolitik och betonar EU-samarbete.'
-    }
-  },
-
-  {
-    title: 'Lag & ordning',
-
-    positions: {
-      S: 'Vill stärka polis och rättsväsende samt förebygga brott.',
-      M: 'Vill ha hårdare straff och fler poliser.',
-      SD: 'Vill ha hårdare straff och kraftigt stärkt polis.',
-      V: 'Vill kombinera polisinsatser med social brottsförebyggande politik.',
-      C: 'Vill stärka polis och rättsväsende men betonar rättssäkerhet.',
-      KD: 'Vill ha hårdare straff och fler poliser.',
-      MP: 'Betonar förebyggande arbete och sociala insatser.',
-      L: 'Vill stärka polis, rättsväsende och rättssäkerhet.'
-    }
-  }
-
+const positionAreas = [
+  { area:'Skola', icon:'🏫', questions:[
+    ['Vinster i friskolor', {S:'Vill förbjuda vinstuttag', M:'Vill behålla friskolor och valfrihet', SD:'Vill begränsa vinstuttag', V:'Vill stoppa vinstjakten', C:'Vill ha valfrihet och mångfald', KD:'Vill ha valfrihet', MP:'Vill begränsa vinstdrivande skolor', L:'Vill ha friskolor men stärka kvalitet och kontroll'}],
+    ['Kunskap, betyg och studiero', {S:'Mer resurser, mindre klasser och stöd', M:'Kunskap, tydliga krav och studiero', SD:'Kunskap, ordning och tydliga krav', V:'Likvärdighet och mer resurser', C:'Likvärdig skola och lärarstöd', KD:'Kunskap, trygghet och valfrihet', MP:'Likvärdighet, elevhälsa och hållbarhet', L:'Stark betoning på kunskap, läsning och lärarrollen'}]
+  ]},
+  { area:'Sjukvård & omsorg', icon:'🏥', questions:[
+    ['Vårdens organisering', {S:'Mer offentlig kontroll och mindre marknadsmisslyckanden', M:'Tillgänglig vård och prestationsbaserade satsningar', SD:'Stärkt vård och fokus på välfärdens kärna', V:'Mer resurser och mindre privatisering', C:'Nära vård och valfrihet', KD:'Starkare vård och kortare köer', MP:'Stärkt offentlig vård och förebyggande hälsa', L:'Tillgänglighet, patientmakt och vård efter behov'}],
+    ['Äldreomsorg', {S:'Mer personal, kvalitet och språkkrav', M:'Kvalitet, valfrihet och bättre villkor', SD:'Trygg äldreomsorg och prioritering av äldre', V:'Mer bemanning och offentliga resurser', C:'Nära omsorg och valfrihet', KD:'Äldre och vård är kärnfrågor', MP:'Trygg och hållbar omsorg', L:'Kvalitet, valfrihet och kompetens'}]
+  ]},
+  { area:'Migration & integration', icon:'🌍', questions:[
+    ['Asyl och migration', {S:'Stram politik i linje med EU:s miniminivåer men värnar asylrätten', M:'Stramare migration och lägre asylinvandring', SD:'Mycket stram migration och ökad återvandring', V:'Mer generös migrations- och asylpolitik', C:'Värnar asylrätten och arbetskraftsinvandring', KD:'Stram migration med fokus på integration', MP:'Mer human migrationspolitik och stark asylrätt', L:'Stram men rättssäker migration, fokus på integration'}],
+    ['Integration', {S:'Krav på svenska, arbete och samhällskunskap', M:'Krav, arbete och egen försörjning', SD:'Assimilation/integration med tydliga krav', V:'Minska segregation och stärka rättigheter', C:'Arbete, språk och snabb etablering', KD:'Språk, arbete och gemenskap', MP:'Motverka segregation och diskriminering', L:'Språk, utbildning och arbete som vägar in'}]
+  ]},
+  { area:'Ekonomi & skatter', icon:'💰', questions:[
+    ['Skatt och välfärd', {S:'Högre intäkter för välfärd och mer omfördelning', M:'Lägre skatt på arbete och företagande', SD:'Lägre skatter för hushåll men satsningar på välfärd', V:'Mer progressiva skatter och högre skatt för de rikaste', C:'Lägre skatt på arbete och bättre villkor för företag', KD:'Skattesänkningar kombinerat med välfärdssatsningar', MP:'Grön skatteväxling och investeringar', L:'Lägre skatt på arbete och reformer för företagande'}],
+    ['Arbete', {S:'Fler jobb och starkare trygghetssystem', M:'Arbetslinje och lägre trösklar till jobb', SD:'Arbetslinje och krav på egen försörjning', V:'Starkare arbetsvillkor och trygghet', C:'Företagande och fler vägar till jobb', KD:'Arbetslinje och familjeperspektiv', MP:'Gröna jobb och omställning', L:'Utbildning och arbetslinje'}]
+  ]},
+  { area:'Klimat & energi', icon:'🌱', questions:[
+    ['Klimatpolitik', {S:'Klimatomställning kombinerad med jobb och industri', M:'Teknikneutral omställning', SD:'Klimatåtgärder med fokus på kostnadseffektivitet', V:'Snabbare och mer statligt driven omställning', C:'Ambitiösa klimatmål och grön tillväxt', KD:'Klimatomställning med teknikneutralitet', MP:'Mycket ambitiös klimatpolitik', L:'Ambitiös klimatpolitik med marknadslösningar'}],
+    ['Energi', {S:'Bygger ut fossilfri energi', M:'Kärnkraft och fossilfri el', SD:'Kärnkraft och stabil energiförsörjning', V:'Förnybart och starkare offentligt ansvar', C:'Förnybart och ny elproduktion, även kärnkraft', KD:'Kärnkraft och fossilfri energi', MP:'Förnybart och minskat fossilberoende', L:'Kärnkraft + förnybart'}]
+  ]},
+  { area:'Lag & ordning', icon:'⚖️', questions:[
+    ['Brott och straff', {S:'Hårdare mot gäng men också förebyggande insatser', M:'Hårdare straff och fler poliser', SD:'Mycket hårdare straff och fler tvångsmedel', V:'Förebyggande arbete kombinerat med rättssäkerhet', C:'Effektiv polis och förebyggande arbete', KD:'Hårdare straff och stärkt polis', MP:'Förebyggande arbete och rättssäkerhet', L:'Stärkt polis, hårdare mot gäng och tydliga konsekvenser'}]
+  ]}
 ];
 
+const similarityGroups = {
+  'Ekonomi & skatter': [['S','V'],['M','C','L'],['KD','SD']],
+  'Migration & integration': [['M','SD','KD'],['S','L'],['C','MP','V']],
+  'Klimat & energi': [['MP','V','C'],['S','L'],['M','KD','SD']],
+  'Skola': [['M','L','KD'],['S','V','MP'],['C']],
+  'Sjukvård & omsorg': [['S','V'],['M','KD','L'],['C','MP','SD']],
+  'Lag & ordning': [['M','SD','KD','L'],['S','C'],['V','MP']]
+};
 
-function renderIssues() {
-
-  document.getElementById(
-    'issueGrid'
-  ).innerHTML =
-
-    issues.map(issue => `
-
-      <div class="issueCard">
-
-        <h3>
-          ${issue.title}
-        </h3>
-
-        ${parties.map(p => `
-
-          <div class="partyPosition">
-
-            <span
-              class="partyTag"
-              style="
-                background:${p.color};
-                color:${['KD','M','L'].includes(p.name)
-                  ? 'white'
-                  : 'black'
-              ">
-              ${p.name}
-            </span>
-
-            ${issue.positions[p.name]}
-
-          </div>
-
-        `).join('')}
-
-      </div>
-
-    `).join('');
-
-  const p1 =
-    document.getElementById('p1Select');
-
-  const p2 =
-    document.getElementById('p2Select');
-
-  const options =
-    parties.map(p =>
-
-      `<option value="${p.name}">
-        ${p.full}
-      </option>`
-
-    ).join('');
-
-  p1.innerHTML = options;
-  p2.innerHTML = options;
-
-  p2.value = 'M';
-
-  updateComparison();
-
+function renderPositions(){
+  const root=document.getElementById('positionAreas');
+  root.innerHTML=positionAreas.map(section=>`
+    <div class="position-section">
+      <h2>${section.icon} ${section.area}</h2>
+      ${section.questions.map(q=>{
+        const rows=Object.entries(q[1]);
+        return `<div class="position-card"><h3>${q[0]}</h3><div class="position-grid">${rows.map(([code,text])=>{const p=parties.find(x=>x.name===code);return `<div class="position-row"><span class="dot" style="background:${p.color}"></span><b>${code}</b><span>${text}</span></div>`}).join('')}</div><div class="similar"><b>Liknande positioner:</b> ${ (similarityGroups[section.area]||[]).map(g=>`<span>${g.join(' · ')}</span>`).join(' ')}</div></div>`;
+      }).join('')}
+    </div>`).join('');
 }
 
-
-function updateComparison() {
-
-  const a =
-    document.getElementById(
-      'p1Select'
-    ).value;
-
-  const b =
-    document.getElementById(
-      'p2Select'
-    ).value;
-
-  if (!a || !b) {
-    return;
+const factData = [
+  {
+    code: 'S',
+    name: 'Socialdemokraterna',
+    leader: 'Magdalena Andersson',
+    founded: '1889',
+    ideology: 'Socialdemokrati',
+    desc: 'Fokuserar på välfärd, arbete, jämlikhet och en stark offentlig sektor.',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS58D4cj3Cb8E-h2AOZa3z_3YVTC2RhghcLxZa80XFjpA&s=10',
+    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt9dQBYmCDZb6K9F7xxO6nl6pAfUJdTXdcDrSLOwH5cngaBXVOU_wFWYJ_xH2FfIfXtnfEgDZU4-X1-APAQXVVE-wR3MuRijgar89ZxmTkNw&s=10', site:'https://www.socialdemokraterna.se', ne:'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/socialdemokraterna'
+  },
+  {
+    code: 'M',
+    name: 'Moderaterna',
+    leader: 'Ulf Kristersson',
+    founded: '1904',
+    ideology: 'Liberal konservatism',
+    desc: 'Betonar marknadsekonomi, sänkta skatter, lag och ordning samt personlig frihet.',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG9zFgfVMnoJlfb7yg97fBTkwgc8G7zn2j4i1S-ZK0xA&s=10',
+    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQF9dZMGLnZXL_c5JSkNaw0Ayjjb-tKgzr0oeHb-lZIpiWKrvBcz0fQ3mIq52MQHXX1hDZ0IT-mioXxlFgy7EfuxqWm9xP6rcfm1MaaWmgQQ&s=10', site:'https://moderaterna.se', ne:'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/moderata-samlingspartiet'
+  },
+  {
+    code: 'SD',
+    name: 'Sverigedemokraterna',
+    leader: 'Jimmie Åkesson',
+    founded: '1988',
+    ideology: 'Socialkonservatism',
+    desc: 'Fokuserar på stram invandringspolitik, skärpta straff och bevarande av svensk kultur.',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeXGeOV7xBsiMbNGB5oAT3R7XxFfCrYmMghLmPw0ffmQ&s=10',
+    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgny9d6ABGyo3O_YwOs5qPrMK3w6G85tQUfrAXgaycrQ&s', site:'https://sd.se', ne:'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/sverigedemokraterna'
+  },
+  {
+    code: 'V',
+    name: 'Vänsterpartiet',
+    leader: 'Nooshi Dadgostar',
+    founded: '1917',
+    ideology: 'Socialism & Feminism',
+    desc: 'Driver frågor om ökad jämlikhet, stopp för vinster i välfärden och fackliga rättigheter.',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4eybFWpuN-QIFGF07-pUBhnFlCKfkiCXCs2hrSSgnqA&s',
+    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDyg9jzsaD-2ecprAJH9ekgxobv4YXf1IFdP3BSON7DRLIX1N0kdHXnK0nZE9UWRN44Z_htVKNGwxt9RnslDDAup66m99n0GTAXkmJGHdw&s=10', site:'https://www.vansterpartiet.se', ne:'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/v%C3%A4nsterpartiet'
+  },
+  {
+    code: 'C',
+    name: 'Centerpartiet',
+    leader: 'Elisabeth Thand Ringqvist',
+    founded: '1913',
+    ideology: 'Socialliberalism',
+    desc: 'Prioriterar landsbygdsfrågor, grön omställning, småföretagande och valfrihet.',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAv7DK_eJfEYUuJBJyntsB0sZPTwrsIg4RH18Pu-5Ykg&s=10',
+    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT20NaNPBcF1pNXxKZYv_vim7Em51FWuV_8QGovVueZUA&s=10', site:'https://www.centerpartiet.se', ne:'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/centerpartiet'
+  },
+  {
+    code: 'KD',
+    name: 'Kristdemokraterna',
+    leader: 'Ebba Busch',
+    founded: '1964',
+    ideology: 'Kristdemokrati',
+    desc: 'Driver frågor om familjens valfrihet, förbättrad sjukvård och trygghet för äldre.',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc9KEZuJc11-26KzqpWfJwkn6qi08yV5H-EUVxZ3lA7g&s=10',
+    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8Uuei0_1lHe7pWx4gS_gbPmGSCdJgMZBfpMbT1a2oWg&s=10', site:'https://kristdemokraterna.se', ne:'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/kristdemokraterna'
+  },
+  {
+    code: 'MP',
+    name: 'Miljöpartiet',
+    leader: 'Amanda Lind & Daniel Helldén',
+    founded: '1981',
+    ideology: 'Grön ideologi',
+    desc: 'Fokuserar på klimat- och miljöpolitik, biologisk mångfald och hållbar omställning.',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzksz1yPzLJGtUkoOOOKjXMdc-AckkAFxfjbvXj-GAHw&s=10',
+    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3DEB_PeZjlhcS2MvEzHkmtd22_FYZ2hbJEn_AKjBFzQ&s=10', site:'https://www.mp.se', ne:'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/milj%C3%B6partiet'
+  },
+  {
+    code: 'L',
+    name: 'Liberalerna',
+    leader: 'Simona Mohamsson',
+    founded: '1934',
+    ideology: 'Socialliberalism',
+    desc: 'Lägger fokus på skola och utbildning, individens frihet och EU-samarbete.',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0Vlit7NmKds_i71oEh2qCzwqR0WCoBB1a5Q6lRrXfQg&s=10',
+    photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrUmVppuUjXq-zVwxm6PhVqx-fQsBbJH5SCs-FmndbGA&s=10', site:'https://www.liberalerna.se', ne:'https://www.ne.se/uppslagsverk/encyklopedi/l%C3%A5ng/liberalerna'
   }
+];
 
-  const pa =
-    parties.find(
-      p => p.name === a
-    );
+document.getElementById('factgrid').innerHTML = factData.map(p => 
+  `<article class="factCard">
+    <div class="factHeader">
+      <img src="${p.logo}" alt="${p.name} logotyp" class="factLogoImg" onerror="this.style.display='none'">
+      <div>
+        <h3 class="factTitle">${p.name} (${p.code})</h3>
+        <span class="small">Grundat ${p.founded}</span>
+      </div>
+    </div>
+    <div class="factBody">
+      <img src="${p.photo}" alt="${p.leader}" class="leaderImg" onerror="this.src='https://via.placeholder.com/90x110?text=Foto'">
+      <div class="factText">
+        <p><b>Partiledare:</b> ${p.leader}</p>
+        <p><b>Ideologi:</b> ${p.ideology}</p>
+        <p style="margin-top:6px; color:var(--text-muted);">${p.desc}</p>
+        <div class="linkRow">
+          <a class="linkButton" href="${p.site}" target="_blank" rel="noopener noreferrer">🌐 Partiets hemsida</a>
+          <a class="linkButton" href="${p.ne}" target="_blank" rel="noopener noreferrer">📖 Läs på NE</a>
+        </div>
+      </div>
+    </div>
+  </article>`
+).join('');
 
-  const pb =
-    parties.find(
-      p => p.name === b
-    );
+let logoQuestions=[];let leaderQuestions=[];
+function shuffle(a){return [...a].sort(()=>Math.random()-0.5);}
+function newGames(){
+  logoQuestions=shuffle(parties);
+  leaderQuestions=shuffle(parties);
 
-  let same = [];
-  let diff = [];
+  // Elevspelen använder exakt samma bilder som visas under fliken "Partierna".
+  // Vi hämtar bilderna från factData så att bildlänkarna aldrig behöver dupliceras eller ändras.
+  const partyInfo = code => factData.find(x => x.code === code);
 
-  issues.forEach(issue => {
+  document.getElementById('logoGame').innerHTML=logoQuestions.map((p,i)=>{
+    const info=partyInfo(p.name);
+    return `<div class="gameItem">
+      <img src="${info.logo}" alt="${info.name} logotyp" class="gameLogoImg">
+      <select id="logo-${i}">
+        <option value="">Välj parti…</option>
+        ${shuffle(parties).map(x=>`<option value="${x.name}">${x.full}</option>`).join('')}
+      </select>
+    </div>`;
+  }).join('');
 
-    const x =
-      issue.positions[a];
+  document.getElementById('leaderGame').innerHTML=leaderQuestions.map((p,i)=>{
+    const info=partyInfo(p.name);
+    return `<div class="gameItem">
+      <img src="${info.photo}" alt="${info.leader}" class="gameLeaderImg">
+      <select id="leader-${i}">
+        <option value="">Välj parti…</option>
+        ${shuffle(parties).map(x=>{
+          const xInfo=partyInfo(x.name);
+          return `<option value="${x.name}">${xInfo.leader}</option>`;
+        }).join('')}
+      </select>
+    </div>`;
+  }).join('');
 
-    const y =
-      issue.positions[b];
-
-    if (x === y) {
-
-      same.push(issue.title);
-
-    } else {
-
-      diff.push(issue.title);
-
-    }
-
-  });
-
-  document.getElementById(
-    'compareResult'
-  ).innerHTML = `
-
-    <h3>
-      ${pa.full} jämfört med ${pb.full}
-    </h3>
-
-    <p>
-      <b>Likheter:</b>
-      ${
-        same.length
-          ? same.join(', ')
-          : 'Inga tydliga likheter i den här förenklade jämförelsen.'
-      }
-    </p>
-
-    <p>
-      <b>Skillnader:</b>
-      ${
-        diff.length
-          ? diff.join(', ')
-          : 'Inga tydliga skillnader.'
-      }
-    </p>
-
-    <hr>
-
-    <p>
-      <b>${pa.name}:</b>
-      ${issues[0].positions[a]}
-    </p>
-
-    <p>
-      <b>${pb.name}:</b>
-      ${issues[0].positions[b]}
-    </p>
-
-  `;
-
+  document.getElementById('logoScore').textContent='Inte rättat ännu.';
+  document.getElementById('leaderScore').textContent='Inte rättat ännu.';
 }
+function checkLogoGame(){let score=0;logoQuestions.forEach((p,i)=>{const e=document.getElementById('logo-'+i);e.classList.remove('gameCorrect','gameWrong');if(e.value===p.name){score++;e.classList.add('gameCorrect')}else e.classList.add('gameWrong')});document.getElementById('logoScore').textContent=`${score} av ${logoQuestions.length} rätt – ${Math.round(score/logoQuestions.length*100)} %`; }
+function checkLeaderGame(){let score=0;leaderQuestions.forEach((p,i)=>{const e=document.getElementById('leader-'+i);e.classList.remove('gameCorrect','gameWrong');if(e.value===p.name){score++;e.classList.add('gameCorrect')}else e.classList.add('gameWrong')});document.getElementById('leaderScore').textContent=`${score} av ${leaderQuestions.length} rätt – ${Math.round(score/leaderQuestions.length*100)} %`; }
 
-
-/* ==========================================================
-   ELEVSPEL
-   ========================================================== */
-
-let logoGameOrder = [];
-let leaderGameOrder = [];
-
-
-function shuffle(arr) {
-
-  return [...arr]
-    .sort(
-      () => Math.random() - 0.5
-    );
-
-}
-
-
-function newGames() {
-
-  logoGameOrder =
-    shuffle(parties);
-
-  leaderGameOrder =
-    shuffle(parties);
-
-  renderGames();
-
-}
-
-
-function renderGames() {
-
-  /* LOGGOR */
-
-  const logoOptions =
-    shuffle(parties);
-
-  document.getElementById(
-    'logoGame'
-  ).innerHTML =
-
-    logoGameOrder
-      .map(
-        (p, i) => `
-
-          <div
-            class="gameItem"
-            id="logoItem${i}">
-
-            <img
-              src="${p.logo}"
-              alt="Partilogo"
-              class="gameLogo"
-              referrerpolicy="no-referrer"
-              loading="eager"
-              onerror="
-                this.style.display='none';
-                this.parentElement.classList.add('imageMissing')
-              ">
-
-            <select
-              id="logoAnswer${i}">
-
-              <option value="">
-                Välj parti...
-              </option>
-
-              ${
-                logoOptions
-                  .map(
-                    x =>
-                      `<option value="${x.name}">
-                        ${x.full}
-                      </option>`
-                  )
-                  .join('')
-              }
-
-            </select>
-
-          </div>
-
-        `
-      ).join('');
-
-
-  /* PARTILEDARE */
-
-  const leaderOptions =
-    shuffle(parties);
-
-  document.getElementById(
-    'leaderGame'
-  ).innerHTML =
-
-    leaderGameOrder
-      .map(
-        (p, i) => `
-
-          <div
-            class="gameItem"
-            id="leaderItem${i}">
-
-            <img
-              src="${p.photo}"
-              alt="${p.leader}"
-              class="gameLeader"
-              referrerpolicy="no-referrer"
-              loading="eager"
-              onerror="
-                this.style.display='none';
-                this.parentElement.classList.add('imageMissing')
-              ">
-
-            <div>
-
-              <strong>
-                ${p.leader}
-              </strong>
-
-              <select
-                id="leaderAnswer${i}"
-                style="margin-top:7px;">
-
-                <option value="">
-                  Välj parti...
-                </option>
-
-                ${
-                  leaderOptions
-                    .map(
-                      x =>
-                        `<option value="${x.name}">
-                          ${x.full}
-                        </option>`
-                    )
-                    .join('')
-                }
-
-              </select>
-
-            </div>
-
-          </div>
-
-        `
-      ).join('');
-
-
-  document.getElementById(
-    'logoScore'
-  ).textContent =
-    'Inte rättat ännu.';
-
-  document.getElementById(
-    'leaderScore'
-  ).textContent =
-    'Inte rättat ännu.';
-
-}
-
-
-/* ==========================================================
-   RÄTTA LOGGOR
-   ========================================================== */
-
-function checkLogoGame() {
-
-  let score = 0;
-
-  logoGameOrder.forEach(
-    (p, i) => {
-
-      const item =
-        document.getElementById(
-          'logoItem' + i
-        );
-
-      const answer =
-        document.getElementById(
-          'logoAnswer' + i
-        );
-
-      item.classList.remove(
-        'correct',
-        'incorrect'
-      );
-
-      if (
-        answer.value === p.name
-      ) {
-
-        score++;
-
-        item.classList.add(
-          'correct'
-        );
-
-      } else {
-
-        item.classList.add(
-          'incorrect'
-        );
-
-      }
-
-    }
-  );
-
-
-  document.getElementById(
-    'logoScore'
-  ).innerHTML =
-
-    `
-      Du fick
-      <b>${score}/${logoGameOrder.length}</b>
-      rätt.
-
-      ${
-        score === logoGameOrder.length
-          ? ' 🎉 Perfekt!'
-          : ' Försök gärna igen!'
-      }
-    `;
-
-}
-
-
-/* ==========================================================
-   RÄTTA PARTILEDARE
-   ========================================================== */
-
-function checkLeaderGame() {
-
-  let score = 0;
-
-  leaderGameOrder.forEach(
-    (p, i) => {
-
-      const item =
-        document.getElementById(
-          'leaderItem' + i
-        );
-
-      const answer =
-        document.getElementById(
-          'leaderAnswer' + i
-        );
-
-      item.classList.remove(
-        'correct',
-        'incorrect'
-      );
-
-      if (
-        answer.value === p.name
-      ) {
-
-        score++;
-
-        item.classList.add(
-          'correct'
-        );
-
-      } else {
-
-        item.classList.add(
-          'incorrect'
-        );
-
-      }
-
-    }
-  );
-
-
-  document.getElementById(
-    'leaderScore'
-  ).innerHTML =
-
-    `
-      Du fick
-      <b>${score}/${leaderGameOrder.length}</b>
-      rätt.
-
-      ${
-        score === leaderGameOrder.length
-          ? ' 🎉 Perfekt!'
-          : ' Försök gärna igen!'
-      }
-    `;
-
-}
-
-
-/* ==========================================================
-   LÄS IN SPARAT LÄRARRESULTAT
-   ========================================================== */
+renderPositions();
 
 try {
-
-  let x =
-    JSON.parse(
-      localStorage.getItem(
-        'schoolGov'
-      )
-    );
-
-  if (
-    x &&
-    Array.isArray(x)
-  ) {
-
-    parties.forEach(
-      (p, i) => {
-
-        if (
-          typeof x[i] === 'number'
-        ) {
-
-          p.pct = x[i];
-
-        }
-
-      }
-    );
-
+  const saved=JSON.parse(localStorage.getItem('schoolGovData'));
+  if(saved && Array.isArray(saved.votes)){
+    document.getElementById('totalVotes').value=saved.totalVotes||1000;
+    parties.forEach((p,i)=>{p.votes=saved.votes[i]||0;p.pct=(p.votes/(saved.totalVotes||1000))*100;});
+  } else {
+    parties.forEach(p=>p.votes=Math.round(p.pct*10));
   }
-
-} catch (e) {}
-
-
-/* ==========================================================
-   STÄNG POPUP MED ESC
-   ========================================================== */
-
-document.addEventListener(
-  'keydown',
-  function(event) {
-
-    if (event.key === 'Escape') {
-      closeAnalysisModal();
-    }
-
-  }
-);
-
-
-/* ==========================================================
-   START
-   ========================================================== */
-
+} catch(e) { parties.forEach(p=>p.votes=Math.round(p.pct*10)); }
+renderTeacher(counts(), true);
 render();
-
-renderFacts();
-
-renderIssues();
-
 newGames();
-
 </script>
-
 </body>
 </html>
